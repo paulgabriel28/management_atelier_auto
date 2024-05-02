@@ -1,16 +1,24 @@
 #include "main.h"
 
-int main()
-{
-    cout << "Hello World!" << endl;
-    string nume = "Popescu";
-    string prenume = "Gabriel";
-    string datanastere[3] = {"28", "07", "2004"};
-    string dataangajare[3] = {"01", "01", "2024"};
-    Angajat *a = new Director(nume, prenume, datanastere, dataangajare);
-    clearChat();
-    a->afisareAngajat();
+int main() {
+    fstream file("data.json", ios::in);
 
-    cin.get();
+    if (!file.is_open()) {
+        std::cerr << "Nu s-a putut deschide fisierul JSON.\n";
+        return 1;
+    }
+
+    json j;
+    file >> j;
+
+    cout << j.dump(4) << '\n';
+
+    for(string i = "1"; j.contains(i); i = to_string(stoi(i) + 1)) {
+        cout << j[i]["name"] << '\n';
+        cout << j[i]["age"] << '\n';
+        cout << endl;
+    }
+
+    file.close();
     return 0;
 }
