@@ -1,8 +1,13 @@
-#include <iostream>
+#include "main.h"
 
-using namespace std;
-
-int main() {
-    cout << "Hello, World!" << endl;
+int main()
+{
+    string nume = "Popescu";
+    string prenume = "Gabriel";
+    string datanastere[3] = {"28", "07", "2004"};
+    string dataangajare[3] = {"01", "01", "2024"};
+    Angajat *a = new Director(nume, prenume, datanastere, dataangajare);
+    
+    a->afisareAngajat();
     return 0;
 }

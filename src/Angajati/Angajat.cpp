@@ -48,7 +48,6 @@ void Angajat::afisareAngajat() const {
     cout << "Prenume: " << prenume << endl;
     cout << "Data Nastere: " << dataNastere[0] << "/" << dataNastere[1] << "/" << dataNastere[2] << endl;
     cout << "Data Angajare: " << dataAngajare[0] << "/" << dataAngajare[1] << "/" << dataAngajare[2] << endl;
-    cout << "Coeficient Salariu: " << coeficientSalariu << endl;
 }
 
 void Angajat::editAngajat()
