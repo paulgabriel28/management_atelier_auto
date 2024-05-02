@@ -4,6 +4,7 @@
 #include <iostream>
 #include <chrono>
 #include <string>
+#include <cstdlib>
 using namespace std;
 
 void sendError(const string &);
@@ -24,3 +25,5 @@ template <typename Tvec, typename Tdim>
 void copyVectorPointer(const Tvec **, const Tvec **, const Tdim &);
 
 double calculSalariu(const double &, const double &);
+
+void clearChat();
