@@ -14,9 +14,9 @@ $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	del /s *.o prog3
 
 run: $(TARGET)
 	./$(TARGET)
 
-.PHONY: all run
+.PHONY: all run clean
