@@ -1,4 +1,7 @@
 #include "../../include/Masini/Masina.h"
+#include "../../include/utile/utileMasini.h"
+
+unsigned int Masina::ID = 0;
 
 // MARK: - Constructori
 Masina::Masina() {
@@ -24,4 +27,13 @@ unsigned int Masina::getAnFabricare() const {
 
 double Masina::getNumarKm() const {
     return numarKm;
+}
+
+double Masina::getPolita() const {
+    double politaAsigurare = double(getVechime(anFabricare) * 100 + ((isDisel == 1) ? 500 : 0) + ((numarKm > 200000) ? 500 : 0));
+
+    if(discount) {
+        return politaAsigurare - (politaAsigurare * discount);
+    }
+    return politaAsigurare;
 }

@@ -9,14 +9,15 @@ class Masina {
         double numarKm;
         unsigned int anFabricare;
         bool isDisel;
+        double discount = 0;
     
     public:
-        inline Masina();
-        inline Masina(const double &, const unsigned int &, const bool &);
-        inline virtual ~Masina();
+        Masina();
+        Masina(const double &, const unsigned int &, const bool &);
+        virtual ~Masina();
 
         static unsigned int getID();
-        double virtual getPolita(const bool & = 0) const = 0;
+        double virtual getPolita() const;
         unsigned int getAnFabricare() const;
         double getNumarKm() const;
 };

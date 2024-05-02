@@ -17,16 +17,16 @@ class Angajat {
         int unixOcupat[5] = {0};
     
     public:
-        inline Angajat();
-        inline Angajat(const string &, const string &, const string *, const string *);
-        inline virtual ~Angajat();
+        Angajat();
+        Angajat(const string &, const string &, const string *, const string *);
+        virtual ~Angajat();
 
         static unsigned int getID();
         unsigned int getIdAngajat() const;
 
         virtual void afisareAngajat() const;
         virtual void editAngajat();
-        virtual double getSalariu() const;
+        double getSalariu() const;
         
         friend void adaugareAngajat(Angajat **&, unsigned int &);
         friend void stergereAngajat(Angajat **&, unsigned int &);

@@ -31,3 +31,9 @@ enum dataEnum {
     LUNA,
     AN
 };
+
+enum typeTransmisie {
+    transmisieNULL = -1,
+    MANUAL = 0,
+    AUTOMAT
+};

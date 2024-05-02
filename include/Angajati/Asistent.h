@@ -13,5 +13,4 @@ class Asistent final: virtual public Angajat {
 
         void afisareAngajat() const;
         void editAngajat();
-        double getSalariu() const;
 };
