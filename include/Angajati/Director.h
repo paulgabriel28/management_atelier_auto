@@ -2,6 +2,7 @@
 
 #include "Angajat.h"
 #include <string>
+#include <iostream>
 
 using namespace  std;
 
@@ -12,5 +13,4 @@ class Director final: virtual public Angajat {
 
         void afisareAngajat() const;
         void editAngajat();
-        double getSalariu() const;
 };

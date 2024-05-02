@@ -1,14 +1,13 @@
-#include "../include/Angajati/Angajat.h"
-#include "../include/utile/functions.h"
-#include "../include/utile/utileAngajati.h"
-#include "../include/enum.h"
+#include "../../include/Angajati/Angajat.h"
+#include "../../include/utile/functions.h"
+#include "../../include/utile/utileAngajati.h"
+#include "../../include/enum.h"
 
-#include "../include/Angajati/Director.h"
-#include "../include/Angajati/Mecanic.h"
-#include "../include/Angajati/Asistent.h"
+#include "../../include/Angajati/Director.h"
+#include "../../include/Angajati/Mecanic.h"
+#include "../../include/Angajati/Asistent.h"
 
-#include <iostream> 
-using namespace std;
+unsigned int Angajat::ID = 0;
 
 // MARK: - Constructori
 Angajat::Angajat() {
@@ -186,6 +185,10 @@ void Angajat::editAngajat()
     } while (modify);
 }
 
+double Angajat::getSalariu() const {
+    return calculSalariu(double(stoi(dataAngajare[2])), coeficientSalariu);
+}
+
 // MARK: - Adaugare
 void adaugareAngajat(Angajat **&vec, unsigned int &dim)
 {
@@ -216,7 +219,7 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
 
     if(typeString != "string") {
         Angajat **copyVec = new Angajat*[dim];
-        for (int i = 0; i < dim; i++) {
+        for (unsigned int i = 0; i < dim; i++) {
             copyVec[i] = vec[i];
         }
 
@@ -225,7 +228,7 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
         dim++;
 
         vec = new Angajat *[dim];
-        for (int i = 0; i < dim - 1; i++) {
+        for (unsigned int i = 0; i < dim - 1; i++) {
             vec[i] = copyVec[i];
         }
         
@@ -252,7 +255,7 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
                 break;
         }
 
-        sortVectorByID(vec, dim);
+        sortVectorAngajatiByID(vec, dim);
         sendSuccess("Angajatul a fost adaugat cu succes: ");
         vec[dim]->afisareAngajat();
     }
@@ -269,8 +272,8 @@ void stergereAngajat(Angajat **&vec, unsigned int &dim) {
         cin >> deleteID;
         
         if(deleteID != "cancel") {
-            for(int i = 0; i < dim; i++) {
-                if(vec[i]->getID() == stoi(deleteID)) {
+            for(unsigned int i = 0; i < dim; i++) {
+                if(vec[i]->getID() == (unsigned int)stoi(deleteID)) {
                     exista = 1;
                 }
             }
@@ -298,8 +301,8 @@ void stergereAngajat(Angajat **&vec, unsigned int &dim) {
     
         vec = new Angajat*[dim - 1];
         int j = 0;
-        for(int i = 0; i < dim; i++) {
-            if(copyVec[i]->getID() != stoi(deleteID)) {
+        for(unsigned int i = 0; i < dim; i++) {
+            if(copyVec[i]->getID() != (unsigned int)stoi(deleteID)) {
                 vec[j++] = copyVec[i];
             }
         }

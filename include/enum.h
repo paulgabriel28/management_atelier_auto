@@ -1,3 +1,5 @@
+#pragma once
+
 // MARK: enum
 enum typeAngajat {
     parametruNULLtype = -1,

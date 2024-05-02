@@ -1,2 +1,8 @@
 .vscode
-cmake-build-debug
+out
+
+structuraDirector.txt
+
+*.o
+
+*.exe

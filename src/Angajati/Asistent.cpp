@@ -1,5 +1,5 @@
-#include "../include/Angajati/Asistent.h"
-#include "../include/utile/functions.h"
+#include "../../include/Angajati/Asistent.h"
+#include "../../include/utile/functions.h"
 
 Asistent::Asistent() {
     coeficientSalariu = 1;
