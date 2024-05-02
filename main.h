@@ -6,4 +6,6 @@
 #include "include/Angajati/Mecanic.h"
 #include "include/Angajati/Asistent.h"
 
+#include "include/utile/functions.h"
+
 using namespace std;
