@@ -17,9 +17,9 @@ class Angajat {
         int unixOcupat[5] = {0};
     
     public:
-        Angajat();
-        Angajat(const string &, const string &, const string *, const string *);
-        virtual ~Angajat();
+        inline Angajat();
+        inline Angajat(const string &, const string &, const string *, const string *);
+        inline virtual ~Angajat();
 
         static unsigned int getID();
         unsigned int getIdAngajat() const;

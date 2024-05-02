@@ -15,8 +15,8 @@ class Masina {
         inline Masina(const double &, const unsigned int &, const bool &);
         inline virtual ~Masina();
 
-        inline static unsigned int getID();
+        static unsigned int getID();
         double virtual getPolita(const bool & = 0) const = 0;
-        inline unsigned int getAnFabricare() const;
-        inline double getNumarKm() const;
+        unsigned int getAnFabricare() const;
+        double getNumarKm() const;
 };
