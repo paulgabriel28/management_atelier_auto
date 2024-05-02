@@ -24,3 +24,7 @@ bool isMajor(const string *);
 bool isPresent(const string *);
 
 void citesteAngajat(string &, string &, string *, string *);
+
+double calculSalariu(const double &an, const double &coeficient);
+
+void sortVectorAngajatiByID(Angajat **, const unsigned int &);

@@ -1,5 +1,6 @@
-#include "../Angajati/Angajat.h"
+#pragma once
 
+#include "../Angajati/Angajat.h"
 #include <iostream>
 #include <chrono>
 #include <string>
@@ -19,11 +20,7 @@ void sendAngajatID(const Angajat *a);
 
 void sendID();
 
-
-template <typename Tvec, typename Tdim>
-void sortVectorByID(Tvec **, Tdim );
-
 template <typename Tvec, typename Tdim>
 void copyVectorPointer(const Tvec **, const Tvec **, const Tdim &);
 
-double calculSalariu(const double &an, const double &coeficient);
+double calculSalariu(const double &, const double &);

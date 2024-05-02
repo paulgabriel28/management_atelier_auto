@@ -1,0 +1,8 @@
+.vscode
+out
+
+structuraDirector.txt
+
+*.o
+
+*.exe

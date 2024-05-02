@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream> 
 using namespace std;
 
 class Angajat {
@@ -27,9 +28,9 @@ class Angajat {
         virtual void editAngajat();
         virtual double getSalariu() const;
         
-        friend void adaugareAngajat(Angajat **&, unsigned int &, const Angajat *);
-        friend void stergereAngajat(Angajat **&, unsigned int &, const unsigned int &);
+        friend void adaugareAngajat(Angajat **&, unsigned int &);
+        friend void stergereAngajat(Angajat **&, unsigned int &);
 
         void setUnixIntrariAtelier(const unsigned int &, const int &);
-        auto getUnixIntrariAtelier() const -> int;
+        auto getUnixIntrariAtelier(const unsigned int &poz) const -> long long;
 };

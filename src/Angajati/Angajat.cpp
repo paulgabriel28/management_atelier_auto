@@ -1,10 +1,13 @@
-#include "../include/Angajati/Angajat.h"
-#include "../include/utile/functions.h"
-#include "../include/utile/utileAngajati.h"
-#include "../include/enum.h"
+#include "../../include/Angajati/Angajat.h"
+#include "../../include/utile/functions.h"
+#include "../../include/utile/utileAngajati.h"
+#include "../../include/enum.h"
 
-#include <iostream>
-using namespace std;
+#include "../../include/Angajati/Director.h"
+#include "../../include/Angajati/Mecanic.h"
+#include "../../include/Angajati/Asistent.h"
+
+unsigned int Angajat::ID = 0;
 
 // MARK: - Constructori
 Angajat::Angajat() {
@@ -180,4 +183,139 @@ void Angajat::editAngajat()
         cin >> q;
         modify = (tolower(q) == 'y') ? 1 : 0;
     } while (modify);
+}
+
+double Angajat::getSalariu() const {
+    return calculSalariu(double(stoi(dataAngajare[2])), coeficientSalariu);
+}
+
+// MARK: - Adaugare
+void adaugareAngajat(Angajat **&vec, unsigned int &dim)
+{
+    bool done = 0;
+    typeAngajat type;
+    string typeString;
+    
+    sendInfo("Introdu tipul angajatului:\nDirector\t|\tMecanic\t|\tAsistent");
+    do {
+        cin >> typeString;
+        type = stringToTypeAngajat(typeString);
+        
+        if(typeString != "cancel") {
+            if(type != parametruNULLtype) {
+                done = 1;
+            }
+            else {
+                sendError("Parametrul introdus nu este valid, parametrii disponibli sunt:\nDirector\t|\tMecanic\t|\tAsistent");
+                sendInfo("Daca vrei sa anulezi modificarea, introdu '-1'");
+            }
+        }
+        else if(typeString == "cancel") {
+            done = 1;
+            sendInfo("Ai anulat adaugarea unui angajat!");
+        }
+
+    } while(!done || (done && typeString != "cancel"));
+
+    if(typeString != "string") {
+        Angajat **copyVec = new Angajat*[dim];
+        for (unsigned int i = 0; i < dim; i++) {
+            copyVec[i] = vec[i];
+        }
+
+        delete[] vec;
+        vec = nullptr;
+        dim++;
+
+        vec = new Angajat *[dim];
+        for (unsigned int i = 0; i < dim - 1; i++) {
+            vec[i] = copyVec[i];
+        }
+        
+        string nume, prenume, dataNastere[3], dataAngajare[3];
+        citesteAngajat(nume, prenume, dataNastere, dataAngajare);
+
+        switch (type) { 
+            case DIRECTOR: {
+                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare);
+                break;
+            }
+
+            case MECANIC: {
+                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare);
+                break;
+            }
+
+            case ASISTENT: {
+                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare);
+                break;
+            }
+
+            default:
+                break;
+        }
+
+        sortVectorAngajatiByID(vec, dim);
+        sendSuccess("Angajatul a fost adaugat cu succes: ");
+        vec[dim]->afisareAngajat();
+    }
+}
+
+void stergereAngajat(Angajat **&vec, unsigned int &dim) {
+
+    sendInfo("Introdu ID-ul angajatului pe care doresti sa il stergi: ");
+    bool exista = 0;
+    string deleteID;
+
+    do {
+        cout << "ID: ";
+        cin >> deleteID;
+        
+        if(deleteID != "cancel") {
+            for(unsigned int i = 0; i < dim; i++) {
+                if(vec[i]->getID() == (unsigned int)stoi(deleteID)) {
+                    exista = 1;
+                }
+            }
+        } 
+        else if(deleteID == "cancel") {
+            exista = 1;
+        }
+
+        if(!exista) {
+            sendError("ID-ul introdus nu exista in lista cu angajati, introdu un nou ID!");
+            sendInfo("Daca doresti sa anulezi modificarea, scrie 'cancel'!");
+        }
+
+    } while(!exista || (exista && deleteID != "cancel"));
+
+
+    if(deleteID == "cancel") {
+        sendInfo("Ai anulat stergerea unui membru!");
+    }
+    else {
+        
+        Angajat **copyVec = new Angajat*[dim];
+        delete [] vec;
+        vec = nullptr;
+    
+        vec = new Angajat*[dim - 1];
+        int j = 0;
+        for(unsigned int i = 0; i < dim; i++) {
+            if(copyVec[i]->getID() != (unsigned int)stoi(deleteID)) {
+                vec[j++] = copyVec[i];
+            }
+        }
+        dim --;
+        Angajat::ID--;
+    }
+}
+
+// MARK: UnixLocuri
+void Angajat::setUnixIntrariAtelier(const unsigned int &poz, const int &val) {
+    unixOcupat[poz] = val;
+}
+
+auto Angajat::getUnixIntrariAtelier(const unsigned int &poz) const -> long long{
+    return unixOcupat[poz];
 }

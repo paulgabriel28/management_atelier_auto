@@ -1,4 +1,4 @@
-#include "../include/utile/utileAngajati.h"
+#include "../../include/utile/utileAngajati.h"
 
 using namespace std;
 
@@ -116,4 +116,23 @@ void citesteAngajat(string &nume, string &prenume, string *dataNastere, string *
             sendError("Data de angajare nu poate fi din viitor, introdu din nou data de nastere");
         }
     } while(!isPresent(dataAngajare));
+}
+
+double calculSalariu(const double &an, const double &coeficient) {
+    if(an) {
+        return an * coeficient * 1000;
+    }
+    return coeficient * 1000;
+}
+
+void sortVectorAngajatiByID(Angajat **vec, const unsigned int &dim) {
+    for(unsigned int i = 0; i < dim - 1; i++) {
+        for(unsigned int j = i + 1; j < dim; j++) {
+            if(vec[i]->getID() > vec[j]->getID()) {
+                Angajat* temp = vec[i];
+                vec[i] = vec[j];
+                vec[j] = temp;
+            }
+        }
+    }
 }

@@ -1,5 +1,4 @@
-#include "../include/utile/functions.h"
-
+#include "../../include/utile/functions.h"
 
 using namespace std;
 
@@ -31,20 +30,6 @@ void sendID() {
     cout << "\n033[38;2;0;0;255m[!]\033[0m Angajat ID: " << Angajat::getID() << endl;
 }
 
-
-template <typename Tvec, typename Tdim>
-void sortVectorByID(Tvec **vec, Tdim dim) {
-    for(int i = 0; i < dim - 1; i++) {
-        for(int j = i + 1; j < dim; j++) {
-            if(vec[i]->getID() > vec[j]->getID()) {
-                Tvec* temp = vec[i];
-                vec[i] = vec[j];
-                vec[j] = temp;
-            }
-        }
-    }
-}
-
 template <typename Tvec, typename Tdim>
 void copyVectorPointer(const Tvec **copyVec, const Tvec **vec, const Tdim &dim) {
     if(copyVec != nullptr) {
@@ -58,14 +43,7 @@ void copyVectorPointer(const Tvec **copyVec, const Tvec **vec, const Tdim &dim) 
     }
 }
 
-double calculSalariu(const double &an, const double &coeficient) {
-    if(an) {
-        return an * coeficient * 1000;
-    }
-    return coeficient * 1000;
-}
-
-auto getCurrentTime(){
+long long getCurrentTime(){
     auto currentTime = chrono::system_clock::now().time_since_epoch();
     auto currentTimeSeconds = chrono::duration_cast<chrono::seconds>(currentTime).count();
     return currentTimeSeconds += 7200; // UTC+2 (Bucuresti)
