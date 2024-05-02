@@ -1,0 +1,11 @@
+#pragma once
+
+#include "Masina.h"
+
+class Autobuz final: public Masina {
+    unsigned int numarLocuri;
+
+    public:
+        inline Autobuz();
+        inline Autobuz(const double &, const unsigned int &, const bool &, const unsigned int &);
+};

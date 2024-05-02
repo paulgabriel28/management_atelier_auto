@@ -26,7 +26,7 @@ class Angajat {
 
         virtual void afisareAngajat() const;
         virtual void editAngajat();
-        virtual double getSalariu() const;
+        double getSalariu() const;
         
         friend void adaugareAngajat(Angajat **&, unsigned int &);
         friend void stergereAngajat(Angajat **&, unsigned int &);

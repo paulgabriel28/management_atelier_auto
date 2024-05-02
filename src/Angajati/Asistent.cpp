@@ -19,7 +19,3 @@ void Asistent::editAngajat() {
     Angajat::editAngajat();
     coeficientSalariu = 2;
 }
-
-double Asistent::getSalariu() const {
-    return calculSalariu(double(stoi(dataAngajare[2])), coeficientSalariu);
-}
