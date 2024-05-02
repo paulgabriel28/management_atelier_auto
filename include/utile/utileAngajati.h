@@ -19,10 +19,8 @@ atributeAngajati angajatiGetParametru(const string &);
 
 typeAngajat stringToTypeAngajat(const string &);
 
-// MARK: isMajor
 bool isMajor(const string *);
 
-// MARK: isPresent
 bool isPresent(const string *);
 
 void citesteAngajat(string &, string &, string *, string *);
