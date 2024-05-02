@@ -117,3 +117,10 @@ void citesteAngajat(string &nume, string &prenume, string *dataNastere, string *
         }
     } while(!isPresent(dataAngajare));
 }
+
+double calculSalariu(const double &an, const double &coeficient) {
+    if(an) {
+        return an * coeficient * 1000;
+    }
+    return coeficient * 1000;
+}

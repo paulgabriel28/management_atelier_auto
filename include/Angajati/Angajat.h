@@ -25,11 +25,11 @@ class Angajat {
 
         virtual void afisareAngajat() const;
         virtual void editAngajat();
-        virtual double getSalariu() const;
+        virtual double getSalariu() const = 0;
         
-        friend void adaugareAngajat(Angajat **&, unsigned int &, const Angajat *);
-        friend void stergereAngajat(Angajat **&, unsigned int &, const unsigned int &);
+        friend void adaugareAngajat(Angajat **&, unsigned int &);
+        friend void stergereAngajat(Angajat **&, unsigned int &);
 
         void setUnixIntrariAtelier(const unsigned int &, const int &);
-        auto getUnixIntrariAtelier() const -> int;
+        auto getUnixIntrariAtelier(const unsigned int &poz) const -> long long;
 };
