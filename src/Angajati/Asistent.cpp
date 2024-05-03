@@ -5,8 +5,8 @@ Asistent::Asistent() {
     coeficientSalariu = 1;
 }
 
-Asistent::Asistent(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare) 
-                    : Angajat(nume, prenume, dataNastere, dataAngajare) {
+Asistent::Asistent(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) 
+                    : Angajat(nume, prenume, dataNastere, dataAngajare, unixOcupat) {
     coeficientSalariu = 1;
 }
 

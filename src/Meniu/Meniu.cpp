@@ -131,6 +131,9 @@ void Meniu(const MeniuOptions &meniu) {
                     switch (option)
                     {
                         case 1: {
+                            Angajat **vec = nullptr;
+                            unsigned int dim = 0;
+                            citesteAngajatiJSON(vec, dim);
                             break;
                         }
 

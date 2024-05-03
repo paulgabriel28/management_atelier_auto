@@ -14,11 +14,11 @@ class Angajat {
         string dataAngajare[3] = {""};
         double coeficientSalariu;
 
-        int unixOcupat[5] = {0};
+        long long unixOcupat[5] = {0};
     
     public:
         Angajat();
-        Angajat(const string &, const string &, const string *, const string *);
+        Angajat(const string &, const string &, const string *, const string *, const long long *);
         virtual ~Angajat();
 
         static unsigned int getID();

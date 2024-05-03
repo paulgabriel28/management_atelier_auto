@@ -15,15 +15,25 @@ Angajat::Angajat() {
     nume = "";
     prenume = "";
     coeficientSalariu = 0;
+    for (int i = 0; i < 3; i++) {
+        dataNastere[i] = "";
+        dataAngajare[i] = "";
+    }
+    for (int i = 0; i < 5; i++) {
+        unixOcupat[i] = 0;
+    }
 }
 
-Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare) {
+Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) {
     idAngajat = ID++;
     this->nume = nume;
     this->prenume = prenume;
     for (int i = 0; i < 3; i++) {
         this->dataNastere[i] = dataNastere[i];
         this->dataAngajare[i] = dataAngajare[i];
+    }
+    for (int i = 0; i < 5; i++) {
+        this->unixOcupat[i] = unixOcupat[i];
     }
     coeficientSalariu = 0;
 }

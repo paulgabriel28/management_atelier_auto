@@ -4,8 +4,8 @@ Director::Director() {
     coeficientSalariu = 2;
 }
 
-Director::Director(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare) 
-                    : Angajat(nume, prenume, dataNastere, dataAngajare) {
+Director::Director(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) 
+                    : Angajat(nume, prenume, dataNastere, dataAngajare, unixOcupat) {
     coeficientSalariu = 2;
 }
 
