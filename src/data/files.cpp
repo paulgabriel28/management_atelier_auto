@@ -46,8 +46,9 @@ void salveazaAngajatitoJson(Angajat **&vec, unsigned int &dim) {
     nlohmann::json json;
 
     for(unsigned int i = 0; i < dim; i++) {
-        json[to_string(i)]["type"] = typeid(*vec[i]).name();
+        json[to_string(i)]["type"] = getTypeAngajat(vec[i]);
         json[to_string(i)]["id"] = vec[i]->getIdAngajat();
+        
         json[to_string(i)]["nume"] = vec[i]->getNume();
         json[to_string(i)]["prenume"] = vec[i]->getPrenume();
         

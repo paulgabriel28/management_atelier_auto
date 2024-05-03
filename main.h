@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <typeinfo>
 
 // MARK: Include
 #include "include/Angajati/Angajat.h"

@@ -12,6 +12,11 @@
 #include "../enum.h"
 #include "functions.h"
 
+#include "../Angajati/Angajat.h"
+#include "../Angajati/Asistent.h"
+#include "../Angajati/Mecanic.h"
+#include "../Angajati/Director.h"
+
 #include <nlohmann/json.hpp>
 
 using namespace std;
@@ -31,3 +36,5 @@ double calculSalariu(const double &an, const double &coeficient);
 void sortVectorAngajatiByID(Angajat **, const unsigned int &);
 
 void editAngajatById();
+
+string getTypeAngajat(const Angajat *);

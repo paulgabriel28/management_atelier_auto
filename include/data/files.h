@@ -16,3 +16,5 @@
 using namespace std;
 
 void citesteAngajatiJSON(Angajat **&, unsigned int &);
+
+void salveazaAngajatitoJson(Angajat **&, unsigned int &);
