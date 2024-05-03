@@ -85,6 +85,10 @@ bool correctOption(const unsigned int &option, const MeniuOptions &meniu) {
 void Meniu(const MeniuOptions &meniu) {
     switch (meniu)
     {
+        case MENIU_NULL: {
+            
+            break;
+        }
         case MENIU_PRINCIPAL: {
             unsigned int option;
             do {
