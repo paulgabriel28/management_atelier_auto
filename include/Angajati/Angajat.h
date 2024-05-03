@@ -14,14 +14,15 @@ class Angajat {
         string dataAngajare[3] = {""};
         double coeficientSalariu;
 
-        int unixOcupat[5] = {0};
+        long long unixOcupat[5] = {0};
     
     public:
         Angajat();
-        Angajat(const string &, const string &, const string *, const string *);
+        Angajat(const string &, const string &, const string *, const string *, const long long *);
         virtual ~Angajat();
 
         static unsigned int getID();
+        static void setAllID(const unsigned int &);
         unsigned int getIdAngajat() const;
 
         virtual void afisareAngajat() const;
@@ -31,6 +32,12 @@ class Angajat {
         friend void adaugareAngajat(Angajat **&, unsigned int &);
         friend void stergereAngajat(Angajat **&, unsigned int &);
 
+        string getNume();
+        string getPrenume();
+        string* getDataAngajare();
+        string *getDataNastere();
+
         void setUnixIntrariAtelier(const unsigned int &, const int &);
         auto getUnixIntrariAtelier(const unsigned int &poz) const -> long long;
+
 };

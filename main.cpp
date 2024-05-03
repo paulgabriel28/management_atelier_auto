@@ -1,24 +1,20 @@
 #include "main.h"
 
 int main() {
-    fstream file("data.json", ios::in);
+    Angajat **vec = nullptr;
+    int dim = 3;
+    vec = new Angajat*[dim];
 
-    if (!file.is_open()) {
-        std::cerr << "Nu s-a putut deschide fisierul JSON.\n";
-        return 1;
+    vec[0] = new Asistent();
+    vec[1] = new Mecanic();
+    vec[2] = new Director();
+
+
+    // Dealocarea memoriei
+    for(int i = 0; i < dim; i++) {
+        delete vec[i];
     }
+    delete[] vec;
 
-    json j;
-    file >> j;
-
-    cout << j.dump(4) << '\n';
-
-    for(string i = "1"; j.contains(i); i = to_string(stoi(i) + 1)) {
-        cout << j[i]["name"] << '\n';
-        cout << j[i]["age"] << '\n';
-        cout << endl;
-    }
-
-    file.close();
     return 0;
 }

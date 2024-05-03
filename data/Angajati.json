@@ -1,0 +1,27 @@
+{
+    "1": {
+        "type": "director",
+        "idAngajat": 1,
+        "nume": "-",
+        "prenume": "-",
+        "dataNastere": {
+            "zi": 0,
+            "luna": 0,
+            "an": 0
+        },
+        "dataAngajare": {
+            "zi": 0,
+            "luna": 0,
+            "an": 0
+        },
+        "unixOcupat": {
+            "masini": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+            },
+            "autobuz": 0,
+            "camion": 0
+        }
+    }
+}

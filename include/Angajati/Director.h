@@ -9,7 +9,7 @@ using namespace  std;
 class Director final: virtual public Angajat {
     public:
         Director();
-        Director(const string &, const string &, const string *, const string *);
+        Director(const string &, const string &, const string *, const string *, const long long *);
 
         void afisareAngajat() const;
         void editAngajat();

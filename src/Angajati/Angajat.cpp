@@ -15,15 +15,25 @@ Angajat::Angajat() {
     nume = "";
     prenume = "";
     coeficientSalariu = 0;
+    for (int i = 0; i < 3; i++) {
+        dataNastere[i] = "";
+        dataAngajare[i] = "";
+    }
+    for (int i = 0; i < 5; i++) {
+        unixOcupat[i] = 0;
+    }
 }
 
-Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare) {
+Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) {
     idAngajat = ID++;
     this->nume = nume;
     this->prenume = prenume;
     for (int i = 0; i < 3; i++) {
         this->dataNastere[i] = dataNastere[i];
         this->dataAngajare[i] = dataAngajare[i];
+    }
+    for (int i = 0; i < 5; i++) {
+        this->unixOcupat[i] = unixOcupat[i];
     }
     coeficientSalariu = 0;
 }
@@ -37,6 +47,10 @@ unsigned int Angajat::getID() {
     return ID;
 }
 
+void Angajat::setAllID(const unsigned int &id) {
+    ID = id;
+}
+
 unsigned int Angajat::getIdAngajat() const {
     return idAngajat;
 }
@@ -48,6 +62,23 @@ void Angajat::afisareAngajat() const {
     cout << "Prenume: " << prenume << endl;
     cout << "Data Nastere: " << dataNastere[0] << "/" << dataNastere[1] << "/" << dataNastere[2] << endl;
     cout << "Data Angajare: " << dataAngajare[0] << "/" << dataAngajare[1] << "/" << dataAngajare[2] << endl;
+}
+
+// MARK: - Getters
+string Angajat::getNume() {
+    return nume;
+}
+
+string Angajat::getPrenume() {
+    return prenume;
+}
+
+string *Angajat::getDataAngajare() {
+    return dataAngajare;
+}
+
+string *Angajat::getDataNastere() {
+    return dataNastere;
 }
 
 void Angajat::editAngajat()
@@ -216,7 +247,7 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
 
     } while(!done || (done && typeString != "cancel"));
 
-    if(typeString != "string") {
+    if(typeString != "cancel") {
         Angajat **copyVec = new Angajat*[dim];
         for (unsigned int i = 0; i < dim; i++) {
             copyVec[i] = vec[i];
@@ -234,19 +265,21 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
         string nume, prenume, dataNastere[3], dataAngajare[3];
         citesteAngajat(nume, prenume, dataNastere, dataAngajare);
 
+        long long unixOcupat[5] = {0};
+
         switch (type) { 
             case DIRECTOR: {
-                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare);
+                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat);
                 break;
             }
 
             case MECANIC: {
-                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare);
+                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat);
                 break;
             }
 
             case ASISTENT: {
-                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare);
+                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat);
                 break;
             }
 

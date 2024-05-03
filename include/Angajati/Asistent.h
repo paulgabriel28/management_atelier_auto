@@ -9,7 +9,7 @@ using namespace  std;
 class Asistent final: virtual public Angajat {
     public:
         Asistent();
-        Asistent(const string &, const string &, const string *, const string *);
+        Asistent(const string &, const string &, const string *, const string *, const long long *);
 
         void afisareAngajat() const;
         void editAngajat();

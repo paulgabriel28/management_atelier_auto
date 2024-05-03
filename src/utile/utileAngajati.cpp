@@ -136,3 +136,23 @@ void sortVectorAngajatiByID(Angajat **vec, const unsigned int &dim) {
         }
     }
 }
+
+void editAngajatById() {
+    // TODO: Citeste fisierul "../../data/Angajati.json" pentru a citi angajatii
+    // Angajat **vec;
+    // unsigned int dim;
+    // TODO: citesteAngajati(vec, dim);
+}
+
+string getTypeAngajat(const Angajat* angajat) {
+    if (dynamic_cast<const Asistent*>(angajat)) {
+        return "asistent";
+    } else if (dynamic_cast<const Mecanic*>(angajat)) {
+        return "mecanic";
+    } else if (dynamic_cast<const Director*>(angajat)) {
+        return "director";
+    } else if (dynamic_cast<const Angajat*>(angajat)) {
+        return "angajat";
+    }
+    return "necunoscut";
+}
