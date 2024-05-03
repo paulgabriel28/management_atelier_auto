@@ -22,6 +22,7 @@ class Angajat {
         virtual ~Angajat();
 
         static unsigned int getID();
+        static void setAllID(const unsigned int &);
         unsigned int getIdAngajat() const;
 
         virtual void afisareAngajat() const;
@@ -33,4 +34,5 @@ class Angajat {
 
         void setUnixIntrariAtelier(const unsigned int &, const int &);
         auto getUnixIntrariAtelier(const unsigned int &poz) const -> long long;
+
 };

@@ -10,8 +10,9 @@
 #include <sstream>
 
 #include "../enum.h"
-
 #include "functions.h"
+
+#include <nlohmann/json.hpp>
 
 using namespace std;
 
@@ -28,3 +29,5 @@ void citesteAngajat(string &, string &, string *, string *);
 double calculSalariu(const double &an, const double &coeficient);
 
 void sortVectorAngajatiByID(Angajat **, const unsigned int &);
+
+void editAngajatById();

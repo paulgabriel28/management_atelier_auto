@@ -10,6 +10,7 @@
 #include "include/Angajati/Asistent.h"
 
 #include "include/utile/functions.h"
+#include "include/Meniu/Meniu.h"
 
 // MARK: LIB
 #include <nlohmann/json.hpp>

@@ -136,3 +136,10 @@ void sortVectorAngajatiByID(Angajat **vec, const unsigned int &dim) {
         }
     }
 }
+
+void editAngajatById() {
+    // TODO: Citeste fisierul "../../data/Angajati.json" pentru a citi angajatii
+    // Angajat **vec;
+    // unsigned int dim;
+    // TODO: citesteAngajati(vec, dim);
+}

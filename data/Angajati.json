@@ -1,0 +1,18 @@
+{
+    "1": {
+        "type": "director",
+        "idAngajat": 1,
+        "nume": "-",
+        "prenume": "-",
+        "dataNastere": {
+            "zi": 0,
+            "luna": 0,
+            "an": 0
+        },
+        "dataAngajare": {
+            "zi": 0,
+            "luna": 0,
+            "an": 0
+        }
+    }
+}

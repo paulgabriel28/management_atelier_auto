@@ -37,6 +37,10 @@ unsigned int Angajat::getID() {
     return ID;
 }
 
+void Angajat::setAllID(const unsigned int &id) {
+    ID = id;
+}
+
 unsigned int Angajat::getIdAngajat() const {
     return idAngajat;
 }
