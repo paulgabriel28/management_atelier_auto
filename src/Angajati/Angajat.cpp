@@ -64,6 +64,23 @@ void Angajat::afisareAngajat() const {
     cout << "Data Angajare: " << dataAngajare[0] << "/" << dataAngajare[1] << "/" << dataAngajare[2] << endl;
 }
 
+// MARK: - Getters
+string Angajat::getNume() {
+    return nume;
+}
+
+string Angajat::getPrenume() {
+    return prenume;
+}
+
+string *Angajat::getDataAngajare() {
+    return dataAngajare;
+}
+
+string *Angajat::getDataNastere() {
+    return dataNastere;
+}
+
 void Angajat::editAngajat()
 {
     unsigned int modify = 0;
@@ -230,7 +247,7 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
 
     } while(!done || (done && typeString != "cancel"));
 
-    if(typeString != "string") {
+    if(typeString != "cancel") {
         Angajat **copyVec = new Angajat*[dim];
         for (unsigned int i = 0; i < dim; i++) {
             copyVec[i] = vec[i];
@@ -248,19 +265,21 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
         string nume, prenume, dataNastere[3], dataAngajare[3];
         citesteAngajat(nume, prenume, dataNastere, dataAngajare);
 
+        long long unixOcupat[5] = {0};
+
         switch (type) { 
             case DIRECTOR: {
-                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare);
+                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat);
                 break;
             }
 
             case MECANIC: {
-                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare);
+                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat);
                 break;
             }
 
             case ASISTENT: {
-                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare);
+                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat);
                 break;
             }
 

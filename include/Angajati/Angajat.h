@@ -32,6 +32,11 @@ class Angajat {
         friend void adaugareAngajat(Angajat **&, unsigned int &);
         friend void stergereAngajat(Angajat **&, unsigned int &);
 
+        string getNume();
+        string getPrenume();
+        string* getDataAngajare();
+        string *getDataNastere();
+
         void setUnixIntrariAtelier(const unsigned int &, const int &);
         auto getUnixIntrariAtelier(const unsigned int &poz) const -> long long;
 

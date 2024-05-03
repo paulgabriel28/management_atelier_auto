@@ -1,6 +1,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <string>
+#include <typeinfo>
 
 #include "../Angajati/Angajat.h"
 #include "../Angajati/Director.h"
