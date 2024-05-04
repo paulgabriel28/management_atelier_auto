@@ -157,3 +157,15 @@ string getTypeAngajat(const Angajat* angajat) {
     }
     return "necunoscut";
 }
+
+void copyVectorAngajat(Angajat **&copyVec, Angajat **vec, const unsigned int &dim) {
+    if(copyVec != nullptr) {
+        delete [] copyVec;
+        copyVec = NULL;
+    }
+
+    copyVec = new Angajat*[dim];    
+    for(unsigned int i = 0; i < dim; i++) {
+        copyVec[i] = vec[i];
+    }
+}

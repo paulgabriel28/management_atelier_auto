@@ -303,17 +303,17 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
 
 void stergereAngajat(Angajat **&vec, unsigned int &dim) {
 
-    sendInfo("Introdu ID-ul angajatului pe care doresti sa il stergi: ");
+    sendInfo("Introdu ID-ul angajatului pe care doresti sa il stergi!");
     bool exista = 0;
     string deleteID;
 
     do {
-        cout << "ID: ";
+        citesteValoare("ID");
         cin >> deleteID;
         
         if(deleteID != "cancel") {
             for(unsigned int i = 0; i < dim; i++) {
-                if(vec[i]->getID() == (unsigned int)stoi(deleteID)) {
+                if(vec[i]->getIdAngajat() == (unsigned int)stoi(deleteID)) {
                     exista = 1;
                 }
             }
@@ -327,27 +327,30 @@ void stergereAngajat(Angajat **&vec, unsigned int &dim) {
             sendInfo("Daca doresti sa anulezi modificarea, scrie 'cancel'!");
         }
 
-    } while(!exista || (exista && deleteID != "cancel"));
+    } while(!exista);
 
 
     if(deleteID == "cancel") {
         sendInfo("Ai anulat stergerea unui membru!");
     }
     else {
-        
         Angajat **copyVec = new Angajat*[dim];
+        copyVectorAngajat(copyVec, vec, dim);
+        
         delete [] vec;
         vec = nullptr;
-    
+
         vec = new Angajat*[dim - 1];
         int j = 0;
         for(unsigned int i = 0; i < dim; i++) {
-            if(copyVec[i]->getID() != (unsigned int)stoi(deleteID)) {
+            if(copyVec[i]->getIdAngajat() != (unsigned int)stoi(deleteID)) {
                 vec[j++] = copyVec[i];
             }
         }
+        
         dim --;
         Angajat::ID--;
+        sendSuccess("Angajatul a fost sters cu succes!");
     }
 }
 

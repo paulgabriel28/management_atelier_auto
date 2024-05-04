@@ -53,7 +53,7 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
     file.close();
 }
 
-void salveazaAngajatitoJson(Angajat **&vec, unsigned int &dim) {
+void salveazaAngajatiToJson(Angajat **&vec, unsigned int &dim) {
     json json;
 
     for(unsigned int i = 0; i < dim; i++) {
