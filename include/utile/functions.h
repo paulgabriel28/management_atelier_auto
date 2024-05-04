@@ -19,9 +19,6 @@ void sendAngajatID(const Angajat *a);
 
 void sendID();
 
-template <typename Tvec, typename Tdim>
-void copyVectorPointer(const Tvec **, const Tvec **, const Tdim &);
-
 double calculSalariu(const double &, const double &);
 
 void clearChat();

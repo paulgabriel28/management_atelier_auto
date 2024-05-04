@@ -34,19 +34,6 @@ void sendID() {
     cout << "\033[38;2;0;0;255m[!]\033[0m Angajat ID: " << Angajat::getID() << endl;
 }
 
-template <typename Tvec, typename Tdim>
-void copyVectorPointer(const Tvec **copyVec, const Tvec **vec, const Tdim &dim) {
-    if(copyVec != nullptr) {
-        delete [] copyVec;
-        copyVec = NULL;
-    }
-
-    copyVec = new Tvec*[dim];    
-    for(int i = 0; i < dim; i++) {
-        copyVec[i] = vec[i];
-    }
-}
-
 long long getCurrentTime(){
     auto currentTime = chrono::system_clock::now().time_since_epoch();
     auto currentTimeSeconds = chrono::duration_cast<chrono::seconds>(currentTime).count();

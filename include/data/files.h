@@ -21,4 +21,4 @@ using json = nlohmann::json;
 
 void citesteAngajatiJSON(Angajat **&, unsigned int &);
 
-void salveazaAngajatitoJson(Angajat **&, unsigned int &);
+void salveazaAngajatiToJson(Angajat **&, unsigned int &);

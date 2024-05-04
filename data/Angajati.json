@@ -1,5 +1,5 @@
 {
-    "1": {
+    "0": {
         "dataAngajare": {
             "an": "0",
             "luna": "0",
@@ -11,9 +11,9 @@
             "zi": "0"
         },
         "id": 0,
-        "nume": "Gigi",
-        "prenume": "Becali",
-        "type": "director",
+        "nume": "Marius",
+        "prenume": "Andrei",
+        "type": "asistent",
         "unixOcupat": {
             "autobuz": 0,
             "camion": 0,
@@ -24,46 +24,21 @@
             }
         }
     },
-    "2": {
+    "1": {
         "dataAngajare": {
-            "an": "2024",
-            "luna": "03",
-            "zi": "28"
+            "an": "2020",
+            "luna": "02",
+            "zi": "20"
         },
         "dataNastere": {
-            "an": "2004",
-            "luna": "07",
-            "zi": "28"
-        },
-        "id": 1,
-        "nume": "Gabriel",
-        "prenume": "Marian",
-        "type": "mecanic",
-        "unixOcupat": {
-            "autobuz": 0,
-            "camion": 0,
-            "masini": {
-                "1": 0,
-                "2": 0,
-                "3": 0
-            }
-        }
-    },
-    "3": {
-        "dataAngajare": {
-            "an": "2024",
+            "an": "2001",
             "luna": "01",
             "zi": "01"
         },
-        "dataNastere": {
-            "an": "1921",
-            "luna": "03",
-            "zi": "21"
-        },
         "id": 2,
-        "nume": "Marius",
-        "prenume": "Ghita",
-        "type": "asistent",
+        "nume": "Gigi",
+        "prenume": "Becali",
+        "type": "director",
         "unixOcupat": {
             "autobuz": 0,
             "camion": 0,
