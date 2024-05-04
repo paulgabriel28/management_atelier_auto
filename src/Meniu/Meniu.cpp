@@ -157,14 +157,12 @@ void Meniu(const MeniuOptions &meniu) {
                         case 1: {
                             adaugareAngajat(vec, dim);
                             salveazaAngajatitoJson(vec, dim);
-                            sendSuccess("Angajatul a fost adaugat cu succes!");
                             break;
                         }
 
                         case 2: {
                             stergereAngajat(vec, dim);
                             salveazaAngajatitoJson(vec, dim);
-                            sendSuccess("Angajatul a fost sters cu succes!");
                             break;
                         }
 
@@ -175,7 +173,6 @@ void Meniu(const MeniuOptions &meniu) {
                             vec[id]->editAngajat();
 
                             salveazaAngajatitoJson(vec, dim);
-                            sendSuccess("Angajatul a fost editat cu succes!");
                             break;
                         }
 
