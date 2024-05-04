@@ -19,7 +19,7 @@ void sendSeparator() {
 }
 
 void sendSuccess(const string &message) {
-    cout << "\033[38;2;0;128;0m[✓] \033[0m" << message;
+    cout << "\033[38;2;0;128;0m[i] \033[0m" << message;
 }
 
 void sendAngajatID(const Angajat *a) {
