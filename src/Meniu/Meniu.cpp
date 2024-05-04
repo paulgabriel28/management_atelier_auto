@@ -12,6 +12,14 @@ void meniuPrincipal() {
     sendQuestion("Alege optiunea dorita!");
 }
 
+void meniuAdmin() {
+    sendInfo("Meniu admin");
+    sendMeniuOption(1, "Angajati");
+    sendMeniuOption(2, "Setari");
+    sendMeniuOption(0, "Inapoi");
+    sendQuestion("Alege optiunea dorita!");
+}
+
 void meniuAdminAngajati() {
     sendInfo("Meniu angajati [ admin ]");
     sendMeniuOption(1, "Adauga angajat");
@@ -29,13 +37,6 @@ void meniuSetari() {
     sendMeniuOption(0, "Inapoi");
 }
 
-void meniuAdmin() {
-    sendInfo("Meniu admin");
-    sendMeniuOption(1, "Angajati");
-    sendMeniuOption(2, "Setari");
-    sendMeniuOption(0, "Inapoi");
-    sendQuestion("Alege optiunea dorita!");
-}
 
 void meniuAtelier() {
     clearChat();
