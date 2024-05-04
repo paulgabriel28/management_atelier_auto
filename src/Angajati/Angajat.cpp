@@ -58,10 +58,18 @@ unsigned int Angajat::getIdAngajat() const {
 // MARK: - Afisare
 void Angajat::afisareAngajat() const {
     sendAngajatID(this);
-    cout << "Nume: " << nume << endl;
+    cout << "Nume: " << nume << " | ";
     cout << "Prenume: " << prenume << endl;
     cout << "Data Nastere: " << dataNastere[0] << "/" << dataNastere[1] << "/" << dataNastere[2] << endl;
     cout << "Data Angajare: " << dataAngajare[0] << "/" << dataAngajare[1] << "/" << dataAngajare[2] << endl;
+    cout << "Locuri in atelier: " << endl;
+    cout << "\tMasini: ";
+    for (int i = 0; i < 3; i++) {
+        cout << ((unixOcupat[i] != 0) ? to_string(unixOcupat[i]) : "liber") << ((i == 2) ? " " : " | ");
+    }
+    cout << endl;
+    cout << "\tAutobuz: " << ((unixOcupat[3] != 0) ? to_string(unixOcupat[3]) : "liber") << endl;
+    cout << "\tCamion: " << ((unixOcupat[4] != 0) ? to_string(unixOcupat[4]) : "liber") << endl;
 }
 
 // MARK: - Getters

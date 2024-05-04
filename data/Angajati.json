@@ -5,14 +5,14 @@
         "nume": "-",
         "prenume": "-",
         "dataNastere": {
-            "zi": 0,
-            "luna": 0,
-            "an": 0
+            "zi": "0",
+            "luna": "0",
+            "an": "0"
         },
         "dataAngajare": {
-            "zi": 0,
-            "luna": 0,
-            "an": 0
+            "zi": "0",
+            "luna": "0",
+            "an": "0"
         },
         "unixOcupat": {
             "masini": {

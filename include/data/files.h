@@ -12,7 +12,6 @@
 
 #include "../enum.h"
 
-
 using namespace std;
 
 void citesteAngajatiJSON(Angajat **&, unsigned int &);

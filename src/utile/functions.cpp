@@ -3,7 +3,7 @@
 using namespace std;
 
 void sendError(const string &mesaj) {
-    cout << "\033[38;2;255;0;0m[x]: \033[0m" << mesaj << endl;
+    cout << "\033[38;2;255;0;0m[x] \033[0m" << mesaj << endl;
 }
 
 void sendInfo(const string &info) {
@@ -57,4 +57,13 @@ void clearChat() {
     #ifdef _WIN32
         system("cls");
     #endif
+}
+
+void elibereazaMemorie(Angajat **&angajati, const unsigned int &dim) {
+    for(unsigned int i = 0; i < dim; i++) {
+        delete angajati[i];
+    }
+
+    delete [] angajati;
+    angajati = NULL;
 }

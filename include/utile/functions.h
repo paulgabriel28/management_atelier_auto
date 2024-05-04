@@ -27,3 +27,5 @@ void copyVectorPointer(const Tvec **, const Tvec **, const Tdim &);
 double calculSalariu(const double &, const double &);
 
 void clearChat();
+
+void elibereazaMemorie(Angajat **&, const unsigned int &);
