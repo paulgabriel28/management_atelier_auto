@@ -1,9 +1,14 @@
 #include "../../include/data/files.h"
 
 void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
-    ifstream file("../../data/Angajati.json");
+    fstream file("data/Angajati.json", ios::in);
 
-    nlohmann::json json;
+    if (!file.is_open()) {
+        sendError("Nu s-a putut deschide fisierul JSON pentru citire.");
+        return;
+    }
+
+    json json;
     file >> json;
 
     dim = json.size();
@@ -12,38 +17,44 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
     // NOTE: Seteaza ID-ul la 0
     Angajat::setAllID(0);
 
-    for(string i = "0"; i <= to_string(dim); i = to_string(stoi(i) + 1)) {
-        typeAngajat type = stringToTypeAngajat(json[i]["type"]);
+    unsigned int index = 0;
+    for(auto it = json.begin(); it != json.end(); it++) {
+        typeAngajat type = stringToTypeAngajat((*it)["type"]);
         
-        string nume = json[i]["nume"];
-        string prenume = json[i]["prenume"];
-        string dataNastere[3] = {json[i]["dataNastere"]["zi"], json[i]["dataNastere"]["luna"], json[i]["dataNastere"]["an"]};
-        string dataAngajare[3] = {json[i]["dataAngajare"]["zi"], json[i]["dataAngajare"]["luna"], json[i]["dataAngajare"]["an"]};
-        long long unixOcupat[5] = {json[i]["unixOcupat"]["masini"]["1"], json[i]["unixOcupat"]["masini"]["2"], json[i]["unixOcupat"]["masini"]["3"], json[i]["unixOcupat"]["autobuz"], json[i]["unixOcupat"]["camion"]};
+        string nume = (*it)["nume"];
+        string prenume = (*it)["prenume"];
+        string dataNastere[3] = {(*it)["dataNastere"]["zi"], (*it)["dataNastere"]["luna"], (*it)["dataNastere"]["an"]};
+        string dataAngajare[3] = {(*it)["dataAngajare"]["zi"], (*it)["dataAngajare"]["luna"], (*it)["dataAngajare"]["an"]};
+        long long unixOcupat[5] = {(*it)["unixOcupat"]["masini"]["1"], (*it)["unixOcupat"]["masini"]["2"], (*it)["unixOcupat"]["masini"]["3"], (*it)["unixOcupat"]["autobuz"], (*it)["unixOcupat"]["camion"]};
 
-        switch (type)
-        {
+        switch (type) {
             case DIRECTOR: {
-                vec[stoi(i)] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[index] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat);
                 break;
             }
 
             case MECANIC: {
-                vec[stoi(i)] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[index] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                break;
             }
 
             case ASISTENT: {
-                vec[stoi(i)] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[index] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                break;
             }
             
             default:
                 break;
         }
+
+        index++;
     }
+
+    file.close();
 }
 
 void salveazaAngajatitoJson(Angajat **&vec, unsigned int &dim) {
-    nlohmann::json json;
+    json json;
 
     for(unsigned int i = 0; i < dim; i++) {
         json[to_string(i)]["type"] = getTypeAngajat(vec[i]);
@@ -67,6 +78,14 @@ void salveazaAngajatitoJson(Angajat **&vec, unsigned int &dim) {
         json[to_string(i)]["unixOcupat"]["camion"] = vec[i]->getUnixIntrariAtelier(4);
     }
 
-    ofstream file("../../data/Angajati.json");
-    file << json;
+    fstream file("data/Angajati.json", ios::out);
+
+    if (!file.is_open()) {
+        sendError("Nu s-a putut deschide fisierul JSON pentru scriere.");
+        return;
+    }
+
+    file << setw(4) << json << ::setfill(' ');
+
+    file.close();
 }

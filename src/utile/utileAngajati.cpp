@@ -20,7 +20,8 @@ typeAngajat stringToTypeAngajat(const string &type) {
     if (lowerType == "director") return DIRECTOR;
     if (lowerType == "mecanic") return MECANIC;
     if (lowerType == "asistent") return ASISTENT;
-    return ANGAJAT;
+    if (lowerType == "angajat" ) return ANGAJAT;
+    return parametruNULLtype;
 }
 
 // MARK: isMajor
@@ -74,7 +75,7 @@ void citesteAngajat(string &nume, string &prenume, string *dataNastere, string *
     sendSeparator();
     sendID();
     do {
-        sendQuestion("-> Nume: ");
+        citesteValoare("Nume");
         cin >> nume;
 
         if(nume.size() > 30) {
@@ -85,7 +86,7 @@ void citesteAngajat(string &nume, string &prenume, string *dataNastere, string *
     
 
     do {
-        sendQuestion("-> Prenume: ");
+        citesteValoare("Prenume");
         cin >> prenume;
 
         if(prenume.size() > 30) {
@@ -96,7 +97,7 @@ void citesteAngajat(string &nume, string &prenume, string *dataNastere, string *
     
 
     do {
-        sendQuestion("-> Data de nastere [format: zz ll aa | ex: 28 07 2004]: ");
+        citesteValoare("Data de nastere [format: zz ll aa | ex: 28 07 2004]");
         for(int i = 0; i < 3; i++) {
             cin >> dataNastere[i];
         }
@@ -107,12 +108,12 @@ void citesteAngajat(string &nume, string &prenume, string *dataNastere, string *
     } while(!isMajor(dataNastere));
 
     do {
+        citesteValoare("Data de angajare [format: zz ll aa | ex: 28 07 2021]");
         for(int i = 0; i < 3; i++) {
-            cin >> dataNastere[i];
+            cin >> dataAngajare[i];
         }
-        cout << "-> Data de angajare [formt: zz ll aa | ]: ";
 
-        if(!isPresent(dataNastere)) {
+        if(!isPresent(dataAngajare)) {
             sendError("Data de angajare nu poate fi din viitor, introdu din nou data de nastere");
         }
     } while(!isPresent(dataAngajare));

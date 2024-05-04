@@ -3,7 +3,7 @@
 using namespace std;
 
 void sendError(const string &mesaj) {
-    cout << "\033[38;2;255;0;0m[x]: \033[0m" << mesaj << endl;
+    cout << "\033[38;2;255;0;0m[x] \033[0m" << mesaj << endl;
 }
 
 void sendInfo(const string &info) {
@@ -14,12 +14,16 @@ void sendQuestion(const string &question) {
     cout << "\033[38;2;255;255;0m(?) \033[0m" << question << endl;
 }
 
+void citesteValoare(const string &message) {
+    cout << "\033[38;2;255;165;0m(->) \033[0m" << message << ": ";
+}
+
 void sendSeparator() {
     cout << "\033[38;2;0;0;128m----------\033[0m\n";
 }
 
 void sendSuccess(const string &message) {
-    cout << "\033[38;2;0;128;0m[✓] \033[0m" << message;
+    cout << "\033[38;2;0;128;0m[i] \033[0m" << message << endl;
 }
 
 void sendAngajatID(const Angajat *a) {
@@ -57,4 +61,13 @@ void clearChat() {
     #ifdef _WIN32
         system("cls");
     #endif
+}
+
+void elibereazaMemorie(Angajat **&angajati, const unsigned int &dim) {
+    for(unsigned int i = 0; i < dim; i++) {
+        delete angajati[i];
+    }
+
+    delete [] angajati;
+    angajati = NULL;
 }

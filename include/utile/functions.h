@@ -8,14 +8,12 @@
 using namespace std;
 
 void sendError(const string &);
-
 void sendInfo(const string &);
-
 void sendQuestion(const string &);
+void sendSuccess(const string &);
+void citesteValoare(const string &);
 
 void sendSeparator();
-
-void sendSuccess(const string &);
 
 void sendAngajatID(const Angajat *a);
 
@@ -27,3 +25,5 @@ void copyVectorPointer(const Tvec **, const Tvec **, const Tdim &);
 double calculSalariu(const double &, const double &);
 
 void clearChat();
+
+void elibereazaMemorie(Angajat **&, const unsigned int &);

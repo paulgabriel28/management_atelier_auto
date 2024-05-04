@@ -58,10 +58,18 @@ unsigned int Angajat::getIdAngajat() const {
 // MARK: - Afisare
 void Angajat::afisareAngajat() const {
     sendAngajatID(this);
-    cout << "Nume: " << nume << endl;
+    cout << "Nume: " << nume << " | ";
     cout << "Prenume: " << prenume << endl;
     cout << "Data Nastere: " << dataNastere[0] << "/" << dataNastere[1] << "/" << dataNastere[2] << endl;
     cout << "Data Angajare: " << dataAngajare[0] << "/" << dataAngajare[1] << "/" << dataAngajare[2] << endl;
+    cout << "Locuri in atelier: " << endl;
+    cout << "\tMasini: ";
+    for (int i = 0; i < 3; i++) {
+        cout << ((unixOcupat[i] != 0) ? to_string(unixOcupat[i]) : "liber") << ((i == 2) ? " " : " | ");
+    }
+    cout << endl;
+    cout << "\tAutobuz: " << ((unixOcupat[3] != 0) ? to_string(unixOcupat[3]) : "liber") << endl;
+    cout << "\tCamion: " << ((unixOcupat[4] != 0) ? to_string(unixOcupat[4]) : "liber") << endl;
 }
 
 // MARK: - Getters
@@ -98,117 +106,114 @@ void Angajat::editAngajat()
 
         switch (typeParam)
         {
-        case NUME:
-        {
-            sendSeparator();
-            sendQuestion("Care este numele nou?");
-            cout << "- Introdu numele: ";
-            string newNume;
-            do
+            case NUME:
             {
-                cin >> newNume;
-                if (newNume.empty())
+                sendSeparator();
+                citesteValoare("Numele nou");
+                string newNume;
+                do
                 {
-                    sendError("Numele introdus nu este valid, introdu un nou nume: ");
-                    cout << "- Introdu numele: ";
-                }
-            } while (!newNume.empty());
-            nume = newNume;
-            sendSuccess("Numele a fost setat cu succes!");
-            break;
-        }
+                    cin >> newNume;
+                    if (newNume.empty())
+                    {
+                        sendError("Numele introdus nu este valid, introdu un nou nume: ");
+                        citesteValoare("Introdu numele");
+                    }
+                } while (newNume.empty());
+                nume = newNume;
+                sendSuccess("Numele a fost setat cu succes!");
+                break;
+            }
 
-        case PRENUME:
-        {
-            sendSeparator();
-            sendQuestion("Care este prenumele nou?");
-            cout << "- Introdu prenumele: ";
-            string newPrenuem;
-            do
+            case PRENUME:
             {
-                cin >> newPrenuem;
-                if (newPrenuem.empty())
+                sendSeparator();
+                citesteValoare("Prenumele nou");
+                string newPrenuem;
+                do
                 {
-                    sendError("Prenumele introdus nu este valid, introdu un nou prenume: ");
-                    cout << "- Introdu prenumele: ";
-                }
-            } while (!newPrenuem.empty());
-            prenume = newPrenuem;
-            sendSuccess("Prenumele a fost setat cu succes!");
-            break;
-        }
+                    cin >> newPrenuem;
+                    if (newPrenuem.empty())
+                    {
+                        sendError("Prenumele introdus nu este valid, introdu un nou prenume: ");
+                        cout << "- Introdu prenumele: ";
+                    }
+                } while (newPrenuem.empty());
+                prenume = newPrenuem;
+                sendSuccess("Prenumele a fost setat cu succes!");
+                break;
+            }
 
-        case dataNASTERE:
-        {
-            sendSeparator();
-            sendQuestion("Care este noua data de nastere?");
-            cout << "- Introdu data [ format: zi luna an (ex: 28 07 2004)]: ";
-            string newData[3];
-            do
+            case dataNASTERE:
             {
+                sendSeparator();
+                citesteValoare("Introdu data [ format: zi luna an (ex: 28 07 2004)]");
+                string newData[3];
+                do
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        cin >> newData[i];
+
+                        if (newData[i].empty())
+                        {
+                            sendError("Nu poti lasa acest parametru gol!");
+                            i--;
+                        }
+                    }
+
+                    if (!isMajor(newData))
+                    {
+                        sendError("Data este introdusa gresit, angajatul nu poate sa fie minor!");
+                    }
+                } while (newData[ZIUA].empty() && newData[LUNA].empty() && newData[AN].empty() && !isMajor(newData));
+
                 for (int i = 0; i < 3; i++)
                 {
-                    cin >> newData[i];
-
-                    if (newData[i].empty())
-                    {
-                        sendError("Nu poti lasa acest parametru gol!");
-                        i--;
-                    }
+                    dataNastere[i] = newData[i];
                 }
-
-                if (!isMajor(newData))
-                {
-                    sendError("Data este introdusa gresit, angajatul nu poate sa fie minor!");
-                }
-            } while (!newData[ZIUA].empty() && !newData[LUNA].empty() && !newData[AN].empty() && !isMajor(newData));
-
-            for (int i = 0; i < 3; i++)
-            {
-                dataNastere[i] = newData[i];
+                sendSuccess("Data de nastere a fost setata cu succes");
+                break;
             }
-            sendSuccess("Data de nastere a fost setata cu succes");
-            break;
-        }
 
-        case dataANGAJARE:
-        {
-            sendSeparator();
-            sendQuestion("Care este noua data de angajare?");
-            cout << "- Introdu data [ format: zi luna an (ex: 28 07 2004)]: ";
-            string newData[3];
-            do
+            case dataANGAJARE:
             {
+                sendSeparator();
+                citesteValoare("Introdu data [ format: zi luna an (ex: 28 07 2004)]");
+                string newData[3];
+                do
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        cin >> newData[i];
+
+                        if (newData[i].empty())
+                        {
+                            sendError("Nu poti lasa acest parametru gol!");
+                            i--;
+                        }
+                    }
+
+                    if (!isPresent(newData))
+                    {
+                        sendError("Data este introdusa gresit, data nu poate fi din viitor!");
+                    }
+                } while (newData[ZIUA].empty() && newData[LUNA].empty() && newData[AN].empty() && !isPresent(newData));
+
                 for (int i = 0; i < 3; i++)
                 {
-                    cin >> newData[i];
-
-                    if (newData[i].empty())
-                    {
-                        sendError("Nu poti lasa acest parametru gol!");
-                        i--;
-                    }
+                    dataAngajare[i] = newData[i];
                 }
-
-                if (!isPresent(newData))
-                {
-                    sendError("Data este introdusa gresit, data nu poate fi din viitor!");
-                }
-            } while (!newData[ZIUA].empty() && !newData[LUNA].empty() && !newData[AN].empty() && !isPresent(newData));
-
-            for (int i = 0; i < 3; i++)
-            {
-                dataAngajare[i] = newData[i];
+                sendSuccess("Data de angajare a fost setata cu succes");
+                break;
             }
-            sendSuccess("Data de angajare a fost setata cu succes");
-            break;
+
+            default:
+                break;
         }
 
-        default:
-            break;
-        }
-
-        sendInfo("Doresti sa mai faci o modificare?\n Y - Da\tN - Nu\n-> Raspuns: ");
+        sendInfo("Doresti sa mai faci o modificare?\n Y - Da\tN - Nu\n");
+        citesteValoare("Raspuns");
         char q;
         cin >> q;
         modify = (tolower(q) == 'y') ? 1 : 0;
@@ -226,7 +231,8 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
     typeAngajat type;
     string typeString;
     
-    sendInfo("Introdu tipul angajatului:\nDirector\t|\tMecanic\t|\tAsistent");
+    sendInfo("Introdu tipul angajatului:\n\t Director \t | \t Mecanic \t | \t Asistent");
+    citesteValoare("Tipul dorit");
     do {
         cin >> typeString;
         type = stringToTypeAngajat(typeString);
@@ -236,8 +242,10 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
                 done = 1;
             }
             else {
-                sendError("Parametrul introdus nu este valid, parametrii disponibli sunt:\nDirector\t|\tMecanic\t|\tAsistent");
+                clearChat();
+                sendError("Parametrul introdus nu este valid, parametrii disponibli sunt:\n\t Director \t | \t Mecanic \t | \t Asistent");
                 sendInfo("Daca vrei sa anulezi modificarea, introdu '-1'");
+                citesteValoare("Tipul dorit");
             }
         }
         else if(typeString == "cancel") {
@@ -245,7 +253,7 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
             sendInfo("Ai anulat adaugarea unui angajat!");
         }
 
-    } while(!done || (done && typeString != "cancel"));
+    } while(!done);
 
     if(typeString != "cancel") {
         Angajat **copyVec = new Angajat*[dim];
@@ -289,7 +297,7 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
 
         sortVectorAngajatiByID(vec, dim);
         sendSuccess("Angajatul a fost adaugat cu succes: ");
-        vec[dim]->afisareAngajat();
+        vec[dim - 1]->afisareAngajat();
     }
 }
 
