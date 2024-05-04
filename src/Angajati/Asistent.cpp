@@ -12,7 +12,7 @@ Asistent::Asistent(const string &nume, const string &prenume, const string *data
 
 void Asistent::afisareAngajat() const {
     Angajat::afisareAngajat();
-    cout << "\n\t- Coeficient Salariat: " << coeficientSalariu << endl;
+    cout << "- Coeficient Salariat: " << coeficientSalariu << endl;
 }
 
 void Asistent::editAngajat() {

@@ -14,12 +14,16 @@ void sendQuestion(const string &question) {
     cout << "\033[38;2;255;255;0m(?) \033[0m" << question << endl;
 }
 
+void citesteValoare(const string &message) {
+    cout << "\033[38;2;255;165;0m(->) \033[0m" << message << ": ";
+}
+
 void sendSeparator() {
     cout << "\033[38;2;0;0;128m----------\033[0m\n";
 }
 
 void sendSuccess(const string &message) {
-    cout << "\033[38;2;0;128;0m[i] \033[0m" << message;
+    cout << "\033[38;2;0;128;0m[i] \033[0m" << message << endl;
 }
 
 void sendAngajatID(const Angajat *a) {

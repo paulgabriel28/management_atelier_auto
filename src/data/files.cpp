@@ -4,11 +4,11 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
     fstream file("data/Angajati.json", ios::in);
 
     if (!file.is_open()) {
-        sendError("Nu s-a putut deschide fisierul JSON.");
+        sendError("Nu s-a putut deschide fisierul JSON pentru citire.");
         return;
     }
 
-    nlohmann::json json;
+    json json;
     file >> json;
 
     dim = json.size();
@@ -49,10 +49,12 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
 
         index++;
     }
+
+    file.close();
 }
 
 void salveazaAngajatitoJson(Angajat **&vec, unsigned int &dim) {
-    nlohmann::json json;
+    json json;
 
     for(unsigned int i = 0; i < dim; i++) {
         json[to_string(i)]["type"] = getTypeAngajat(vec[i]);
@@ -76,6 +78,14 @@ void salveazaAngajatitoJson(Angajat **&vec, unsigned int &dim) {
         json[to_string(i)]["unixOcupat"]["camion"] = vec[i]->getUnixIntrariAtelier(4);
     }
 
-    ofstream file("../../data/Angajati.json");
-    file << json;
+    fstream file("data/Angajati.json", ios::out);
+
+    if (!file.is_open()) {
+        sendError("Nu s-a putut deschide fisierul JSON pentru scriere.");
+        return;
+    }
+
+    file << setw(4) << json << ::setfill(' ');
+
+    file.close();
 }
