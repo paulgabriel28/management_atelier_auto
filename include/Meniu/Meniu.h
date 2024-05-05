@@ -4,6 +4,8 @@
 #include "../data/files.h"
 #include "../Atelier/functiiAtelier.h"
 
+#include "../Rapoarte/Rapoarte.h"
+
 #include <iostream>
 using namespace std;
 
