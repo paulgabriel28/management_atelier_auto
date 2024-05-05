@@ -1,24 +1,24 @@
 [
     {
         "bacsis": 0,
-        "cerereSpeciala": 0,
+        "cerereSpeciala": false,
         "dataIesireUnix": 0,
         "dataIntrareUnix": 0,
         "idAngajat": 0,
-        "inAsteptare": 0,
+        "inAsteptare": true,
         "masina": {
             "anFabricare": 0,
             "discount": 0,
-            "isDisel": 0,
+            "isDisel": false,
             "numarKm": 0,
             "numarLocuri": 0,
-            "tip": "-",
+            "tip": "standard",
             "tonaj": 0,
-            "transmisie": 0
+            "transmisie": false
         }
     },
     {
-        "bacsis": 300,
+        "bacsis": 16.5,
         "cerereSpeciala": true,
         "dataIesireUnix": 1717519993,
         "dataIntrareUnix": 1714928002,
@@ -32,7 +32,7 @@
             "numarLocuri": 0,
             "tip": "standard",
             "tonaj": 0.0,
-            "transmisie": 0
+            "transmisie": false
         }
     }
 ]

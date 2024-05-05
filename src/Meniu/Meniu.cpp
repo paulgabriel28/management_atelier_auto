@@ -298,35 +298,35 @@ void Meniu(const MeniuOptions &meniu) {
                         }
                         comenxiMaxZi(data);
 
-                        Meniu(NOUA_OPTIUNE);
+                        // Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 3: {
                         sendInfo("Top 3 angajati cu cea mai mare valoare a politelor de asigurare");
                         top3maxPolita();
-                        Meniu(NOUA_OPTIUNE);
+                        // Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 4: {
                         sendInfo("Top 3 angajati care au reparat cele mai multe autobuze noi");
                         top3maxAutobuze();
-                        Meniu(NOUA_OPTIUNE);
+                        // Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 5: {
                         sendInfo("Top 3 angajati cu cei mai multe cereri speciale");
                         top3CereriSpeciale();
-                        Meniu(NOUA_OPTIUNE);
+                        // Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 6: {
                         sendInfo("Bacsisul fiecarui angajat");
                         afisareBacsis();
-                        Meniu(NOUA_OPTIUNE);
+                        // Meniu(NOUA_OPTIUNE);
                         break;
                     }
 

@@ -31,9 +31,9 @@ void comenxiMaxZi(const string *data) {
     for(size_t i = 0; i < intrariAtelier.size(); i++) {
         if(unixInDateString(intrariAtelier[i]["dataIntrareUnix"], data)) {
             if(intrariAtelier[i]["inAsteptare"]) {
-                vecAngajati[(int)intrariAtelier[i]["angajatID"]].nrComenziAsteptare++;
+                vecAngajati[(int)intrariAtelier[i]["idAngajat"]].nrComenziAsteptare++;
             } else {
-                vecAngajati[(int)intrariAtelier[i]["angajatID"]].nrComenzi++;
+                vecAngajati[(int)intrariAtelier[i]["idAngajat"]].nrComenzi++;
             }            
         }
     }
@@ -81,7 +81,7 @@ void top3maxPolita() {
         double numarKm = intrariAtelier[i]["masina"]["numarKm"];
         unsigned int anFabricare = intrariAtelier[i]["masina"]["anFabricare"];
         bool isDisel = intrariAtelier[i]["masina"]["isDisel"];
-        unsigned int idAngajat = intrariAtelier[i]["angajatID"];
+        unsigned int idAngajat = intrariAtelier[i]["idAngajat"];
         typeMasini tip = stringToTypeMasina(intrariAtelier[i]["masina"]["tip"]);
 
         Masina *masina = nullptr;
@@ -128,8 +128,12 @@ void top3maxPolita() {
     citesteAngajatiJSON(angajati, dim);
 
     sendInfo("Top 3 angajati cu cea mai mare valoare a politelor de asigurare:");
+    if(vecAngajati[0].sumaPolitaMax == 0) {
+        sendError("Nu exista angajati cu polita de asigurare.");
+        return;
+    }
     for(unsigned int i = 0; i < 3; i++) {
-        sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(vecAngajati[i].poz) + "]" + angajati[vecAngajati[i].poz]->getNume() + " " + angajati[vecAngajati[i].poz]->getPrenume());
+        sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(vecAngajati[i].poz) + "] - " + angajati[vecAngajati[i].poz]->getNume() + " " + angajati[vecAngajati[i].poz]->getPrenume());
     }
 
     delete [] angajati;
@@ -166,7 +170,7 @@ void top3maxAutobuze() {
             continue;
         }
 
-        unsigned int idAngajat = intrariAtelier[i]["angajatID"];
+        unsigned int idAngajat = intrariAtelier[i]["idAngajat"];
         if(!isVechi5Ani(intrariAtelier[i]["masina"]["anFabricare"])) {
             continue;
         }
@@ -191,7 +195,11 @@ void top3maxAutobuze() {
         }
     }
 
-    sendInfo("Top 3 angajati care au reparat cele mai multe autobuze noi:");
+    if(vecAngajati[pozMax[0]].nrAutobuze == 0) {
+        sendError("Nu exista date care sa corespunda cerintelor.");
+        delete [] angajati;
+        return;
+    }
     for(unsigned int i = 0; i < 3; i++) {
         sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(pozMax[i]) + "]" + angajati[pozMax[i]]->getNume() + " " + angajati[pozMax[i]]->getPrenume());
     }
@@ -209,8 +217,8 @@ void top3CereriSpeciale() {
     unsigned int vecAngajati[dim] = {0};
 
     for(size_t i = 0; i < json.size(); i++) {
-        if(json[i]["masina"]["cerereSpeciala"]) {
-            vecAngajati[(int)json[i]["angajatID"]]++;
+        if(json[i]["cerereSpeciala"]) {
+            vecAngajati[(int)json[i]["idAngajat"]]++;
         }
     }
 
@@ -233,8 +241,17 @@ void top3CereriSpeciale() {
     }
 
     sendInfo("Top 3 angajati care au cele mai multe cereri speciale:");
+    
+    if(vecAngajati[pozMax[0]] == 0) {
+        sendError("Nu exista date care sa corespunda cerintelor.");
+        delete [] angajati;
+        return;
+    }
     for(unsigned int i = 0; i < 3; i++) {
-        sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(pozMax[i]) + "]" + angajati[pozMax[i]]->getNume() + " " + angajati[pozMax[i]]->getPrenume());
+        if(vecAngajati[pozMax[i]] == 0) {
+            continue;
+        }
+        sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(pozMax[i]) + "] " + angajati[pozMax[i]]->getNume() + " " + angajati[pozMax[i]]->getPrenume());
     }
 }
 
@@ -250,6 +267,8 @@ void afisareBacsis() {
         double bacsis = 0;
     } vecAngajati[dim];
 
+    bool exist = false;
+
     for(size_t i = 0; i < intrariAtelier.size(); i++) {
         if(intrariAtelier[i]["inAsteptare"]) {
             continue;
@@ -258,13 +277,13 @@ void afisareBacsis() {
         double numarKm = intrariAtelier[i]["masina"]["numarKm"];
         unsigned int anFabricare = intrariAtelier[i]["masina"]["anFabricare"];
         bool isDisel = intrariAtelier[i]["masina"]["isDisel"];
-        unsigned int idAngajat = intrariAtelier[i]["angajatID"];
+        unsigned int idAngajat = intrariAtelier[i]["idAngajat"];
         typeMasini tip = stringToTypeMasina(intrariAtelier[i]["masina"]["tip"]);
 
         Masina *masina = nullptr;
         switch(tip) {
             case tipSTANDARD: {
-                masina = new Standard(numarKm, anFabricare, isDisel, idAngajat, (intrariAtelier[i]["masina"]["transmisie"] == 0 ? MANUAL : AUTOMAT));
+                masina = new Standard(numarKm, anFabricare, isDisel, idAngajat, (intrariAtelier[i]["masina"]["transmisie"] == false ? MANUAL : AUTOMAT));
                 break;
             }
 
@@ -282,15 +301,23 @@ void afisareBacsis() {
                 break;
             }
         }
-
+    
         double bacsis = masina->getPolita() * 0.01;
         vecAngajati[idAngajat].bacsis += bacsis;
+        exist = true;
     }
 
-    sendInfo("Bacsisul fiecarui angajat:");
-    for(unsigned int i = 0; i < dim; i++) {
-        sendInfo("Angajatul " + angajati[i]->getNume() + " " + angajati[i]->getPrenume() + " are un bacsis de " + to_string(vecAngajati[i].bacsis) + " lei.");
+    if(exist == false) {
+        sendError("Nu exista bacsisuri de afisat.");
     }
+    else {
+        for(unsigned int i = 0; i < dim; i++) {
+            if(vecAngajati[i].bacsis == 0) {
+                continue;
+            }
+            sendInfo("Angajatul " + angajati[i]->getNume() + " " + angajati[i]->getPrenume() + " are un bacsis de " + to_string(vecAngajati[i].bacsis) + " lei.");
+        }
 
-    delete [] angajati;
+        delete [] angajati;
+    }
 }
