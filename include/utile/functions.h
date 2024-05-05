@@ -24,3 +24,5 @@ double calculSalariu(const double &, const double &);
 void clearChat();
 
 void elibereazaMemorie(Angajat **&, const unsigned int &);
+
+long long getCurrentTime();

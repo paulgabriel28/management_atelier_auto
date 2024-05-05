@@ -10,6 +10,8 @@
 #include "../utile/utileAngajati.h"
 #include "../utile/functions.h"
 
+#include "../utile/functions.h"
+
 #include "../enum.h"
 
 

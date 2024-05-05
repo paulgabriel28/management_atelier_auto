@@ -407,8 +407,13 @@ auto Angajat::getUnixIntrariAtelier(const unsigned int &poz) const -> long long{
     return unixOcupat[poz];
 }
 
+
 // MARK: MasiniInAsteptare
-void Angajat::addMasiniInAsteptare(const unsigned int &nr, const typeMasini &tip, const long long &unix) {
+unsigned int Angajat::getNrMasiniInAsteptare() const {
+    return nrMasiniInAsteptare;
+}
+
+void Angajat::addMasiniInAsteptare(const typeMasini &tip, const long long &unix) {
     nrMasiniInAsteptare++;
     
     masinaInAsteptare *copyMasini = new masinaInAsteptare[nrMasiniInAsteptare];
