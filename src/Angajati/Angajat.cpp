@@ -41,7 +41,7 @@ Angajat::Angajat(const string &nume, const string &prenume, const string *dataNa
 
     nrMasiniInAsteptare = nrAsteptare;
     masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
-    for (int i = 0; i < nrMasiniInAsteptare; i++) {
+    for (unsigned int i = 0; i < nrMasiniInAsteptare; i++) {
         masiniInAsteptare[i] = masiniAsteptare[i];
     }
 }
@@ -68,7 +68,7 @@ Angajat& Angajat::operator=(const Angajat &a) {
         
         delete [] masiniInAsteptare;
         masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
-        for (int i = 0; i < nrMasiniInAsteptare; i++) {
+        for (unsigned int i = 0; i < nrMasiniInAsteptare; i++) {
             masiniInAsteptare[i] = a.masiniInAsteptare[i];
         }
     }

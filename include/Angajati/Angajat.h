@@ -2,6 +2,9 @@
 
 #include <string>
 #include <iostream> 
+
+#include "../enum.h"
+
 using namespace std;
 
 struct masinaInAsteptare {
