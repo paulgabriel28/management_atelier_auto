@@ -6,8 +6,9 @@
 #include <algorithm>
 
 #include "../enum.h"
+#include "../utile/functions.h"
 
 using namespace std;
 
-long long ZileToUnix(const long long &);
 long long UnixToZile(const long long &);
+long long ZileToUnix(const int &);

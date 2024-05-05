@@ -35,8 +35,6 @@ double calculSalariu(const double &an, const double &coeficient);
 
 void sortVectorAngajatiByID(Angajat **, const unsigned int &);
 
-void editAngajatById();
-
 string getTypeAngajat(const Angajat *);
 
 void copyVectorAngajat(Angajat **&, Angajat **, const unsigned int &);

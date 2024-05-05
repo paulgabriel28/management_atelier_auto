@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "../utile/utileMasini.h"
+#include <ctime>
 
 using namespace std;
 
@@ -16,6 +16,8 @@ class Masina {
         Masina();
         Masina(const double &, const unsigned int &, const bool &);
         virtual ~Masina();
+
+        unsigned int getVechime() const;
 
         static unsigned int getID();
         double virtual getPolita() const;

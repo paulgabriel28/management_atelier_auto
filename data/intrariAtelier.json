@@ -1,0 +1,17 @@
+[
+    {
+        "dataUnix": 0,
+        "idAngajat": 0,
+        "cerereSpeciala": 0,
+        "masina": {
+            "tip": "-",
+            "numarKm": 0,
+            "anFabricare": 0,
+            "isDisel": 0,
+            "discount": 0,
+            "numarLocuri": 0,
+            "tonaj": 0,
+            "transmisie": 0
+        }
+    }
+]

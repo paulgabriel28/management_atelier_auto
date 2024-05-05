@@ -29,10 +29,18 @@ double Masina::getNumarKm() const {
 }
 
 double Masina::getPolita() const {
-    double politaAsigurare = double(getVechime(anFabricare) * 100 + ((isDisel == 1) ? 500 : 0) + ((numarKm > 200000) ? 500 : 0));
+    double politaAsigurare = double(getVechime() * 100 + ((isDisel == 1) ? 500 : 0) + ((numarKm > 200000) ? 500 : 0));
 
     if(discount) {
         return politaAsigurare - (politaAsigurare * discount);
     }
     return politaAsigurare;
+}
+
+unsigned int Masina::getVechime() const {
+    time_t timpPrezent = time(nullptr);
+    tm* structTmPrezent = localtime(&timpPrezent);
+    unsigned int anPrezent = structTmPrezent->tm_year + 1900;
+
+    return anPrezent - anFabricare;
 }
