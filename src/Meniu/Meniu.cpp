@@ -68,6 +68,10 @@ bool correctOption(const unsigned int &option, const MeniuOptions &meniu) {
         if(option <= 2) {
             return true;
         }
+    } else if(meniu == MENIU_ATELIER) {
+        if(option <= 6) {
+            return true;
+        }
     }
     return false;
 }
@@ -80,11 +84,41 @@ void Meniu(const MeniuOptions &meniu) {
             return;
         }
 
+        case INCHIDE_MENIU: {
+            clearChat();
+            sendInfo("Ai iesit din meniu!");
+            return;
+        }
+
+        case NOUA_OPTIUNE: {
+            sendInfo("Optiunea a fost efectuata cu succes");
+            sendInfo("Doresti sa faci o noua actiune?");
+            sendQuestion("1 - Da \t|\t 0 - Nu");
+            unsigned int option = -1;
+            do {
+                cin >> option;
+                if(option != 0 && option != 1) {
+                    sendError("Optiunea aleasa nu este corecta!");
+                    sendQuestion("1 - Da \t|\t 0 - Nu");
+                }
+            } while(option != 0 && option != 1);
+
+            if(option == 1) {
+                Meniu(MENIU_ATELIER);
+            } 
+            else if(option == 0) {
+                Meniu(INCHIDE_MENIU);
+            }
+
+            break;
+        }
+
         case MENIU_PRINCIPAL: {
             unsigned int option;
             do {
                 meniuPrincipal();
-                cout << "\tOptiune: "; cin >> option;
+                citesteValoare("Optiune"); 
+                cin >> option;
 
                 if(correctOption(option, MENIU_PRINCIPAL)) {
                     switch (option)
@@ -100,7 +134,8 @@ void Meniu(const MeniuOptions &meniu) {
                         }
 
                         case 0: {
-                            // TODO: Inchide program
+                            clearChat();
+                            sendInfo("Programul se inchide...");
                             break;
                         }
 
@@ -119,7 +154,8 @@ void Meniu(const MeniuOptions &meniu) {
             unsigned int option;
             do {
                 meniuAdmin();
-                cout << "\tOptiune: "; cin >> option;
+                citesteValoare("Optiune"); 
+                cin >> option;
 
                 if(correctOption(option, MENIU_ADMIN)) {
                     switch (option)
@@ -155,7 +191,8 @@ void Meniu(const MeniuOptions &meniu) {
             unsigned int option;
             do {
                 meniuAdminAngajati();
-                cout << "\tOptiune: "; cin >> option;
+                citesteValoare("Optiune"); 
+                cin >> option;
 
                 if(correctOption(option, MENIU_ADMIN_ANGAJATI)) {
                     Angajat **vec = nullptr;
@@ -227,7 +264,27 @@ void Meniu(const MeniuOptions &meniu) {
         case MENIU_ATELIER: {
             unsigned int option;
             do {
+                clearChat();
+                meniuAtelier();
+                citesteValoare("Optiune");
+                cin >> option;
 
+                switch (option)
+                {
+                    case 1: {
+                        nouaMasinaInAtelier();
+                        Meniu(NOUA_OPTIUNE);
+                        break;
+                    }
+
+                    case 0: {
+                        Meniu(MENIU_PRINCIPAL);
+                        break;
+                    }
+                    
+                    default:
+                        break;
+                }
             } while(!correctOption(option, MENIU_ATELIER));
         }
 

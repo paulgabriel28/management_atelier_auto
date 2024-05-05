@@ -10,6 +10,7 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
 
     json json;
     file >> json;
+    
 
     dim = json.size();
     vec = new Angajat*[dim];
@@ -26,8 +27,7 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
         string dataNastere[3] = {(*it)["dataNastere"]["zi"], (*it)["dataNastere"]["luna"], (*it)["dataNastere"]["an"]};
         string dataAngajare[3] = {(*it)["dataAngajare"]["zi"], (*it)["dataAngajare"]["luna"], (*it)["dataAngajare"]["an"]};
         long long unixOcupat[5] = {(*it)["unixOcupat"]["masini"]["1"], (*it)["unixOcupat"]["masini"]["2"], (*it)["unixOcupat"]["masini"]["3"], (*it)["unixOcupat"]["autobuz"], (*it)["unixOcupat"]["camion"]};
-
-        unsigned int nrMasiniInAsteptare = stringToTypeMasina((*it)["nrMasiniInAsteptare"]);
+        unsigned int nrMasiniInAsteptare = (*it)["nrMasiniInAsteptare"];
         masinaInAsteptare *masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
         for (unsigned int i = 0; i < nrMasiniInAsteptare; ++i) {
             masiniInAsteptare[i].tip = (*it)["masiniInAsteptare"][i]["tip"];
@@ -54,8 +54,7 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
                 break;
         }
 
-        delete[] masiniInAsteptare; // Eliberarea memoriei alocate pentru vectorul de masini in asteptare
-
+        delete [] masiniInAsteptare;
         index++;
     }
 
@@ -85,6 +84,13 @@ void salveazaAngajatiToJson(Angajat **&vec, unsigned int &dim) {
         json[to_string(i)]["unixOcupat"]["masini"]["3"] = vec[i]->getUnixIntrariAtelier(2);
         json[to_string(i)]["unixOcupat"]["autobuz"] = vec[i]->getUnixIntrariAtelier(3);
         json[to_string(i)]["unixOcupat"]["camion"] = vec[i]->getUnixIntrariAtelier(4);
+
+        json[to_string(i)]["nrMasiniInAsteptare"] = vec[i]->getNrMasiniInAsteptare();
+        json[to_string(i)]["masiniInAsteptare"] = json::array();
+        for (unsigned int j = 0; j < vec[i]->getNrMasiniInAsteptare(); ++j) {
+            json[to_string(i)]["masiniInAsteptare"][j]["tip"] = vec[i]->getMasiniInAsteptare()[j].tip;
+            json[to_string(i)]["masiniInAsteptare"][j]["unixIntrare"] = vec[i]->getMasiniInAsteptare()[j].unixIntrare;
+        }
     }
 
     fstream file("data/Angajati.json", ios::out);
@@ -100,28 +106,6 @@ void salveazaAngajatiToJson(Angajat **&vec, unsigned int &dim) {
 }
 
 void intrareInAtelier(const Angajat *angajat, const Masina *masina, const long long &iesireService, const bool &cerereSpeciala, const bool &inAsteptare, const unsigned short int &bacsis) {
-    /* format JSON:
-    [
-        {
-            "idAngajat": 0,
-            "dataIntrareUnix": 0,
-            "dataIesireUnix": 0,
-            "cerereSpeciala": 0,
-            "inAsteptare": 0,
-            "masina": {
-                "tip": "-",
-                "numarKm": 0,
-                "anFabricare": 0,
-                "isDisel": 0,
-                "discount": 0,
-                "numarLocuri": 0,
-                "tonaj": 0,
-                "transmisie": -1
-            }
-        }
-    ]
-    */
-
     fstream file("data/intrariAtelier.json", ios::in | ios::out);
 
     if (!file.is_open()) {

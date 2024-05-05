@@ -2,6 +2,7 @@
 
 #include "../utile/functions.h"
 #include "../data/files.h"
+#include "../Atelier/functiiAtelier.h"
 
 #include <iostream>
 using namespace std;
@@ -12,7 +13,9 @@ enum MeniuOptions {
     MENIU_ADMIN_ANGAJATI,
     MENIU_SETARI,
     MENIU_ADMIN,
-    MENIU_ATELIER
+    MENIU_ATELIER,
+    NOUA_OPTIUNE,
+    INCHIDE_MENIU
 };
 
 void sendMeniuOption(const unsigned int &, const string &);
@@ -20,7 +23,6 @@ void sendMeniuOption(const unsigned int &, const string &);
 void meniuPrincipal();
 
 void meniuAdminAngajati();
-void meniuAdminMasini();
 
 void meniuSetari();
 void meniuAdmin();

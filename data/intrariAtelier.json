@@ -1,19 +1,37 @@
 [
     {
-        "idAngajat": 0,
-        "dataIntrareUnix": 0,
-        "dataIesireUnix": 0,
-        "cerereSpeciala": 0,
-        "inAsteptare": 0,
         "bacsis": 0,
+        "cerereSpeciala": 0,
+        "dataIesireUnix": 0,
+        "dataIntrareUnix": 0,
+        "idAngajat": 0,
+        "inAsteptare": 0,
         "masina": {
-            "tip": "-",
-            "numarKm": 0,
             "anFabricare": 0,
-            "isDisel": 0,
             "discount": 0,
+            "isDisel": 0,
+            "numarKm": 0,
             "numarLocuri": 0,
+            "tip": "-",
             "tonaj": 0,
+            "transmisie": 0
+        }
+    },
+    {
+        "bacsis": 300,
+        "cerereSpeciala": true,
+        "dataIesireUnix": 1717519993,
+        "dataIntrareUnix": 1714928002,
+        "idAngajat": 1,
+        "inAsteptare": false,
+        "masina": {
+            "anFabricare": 2012,
+            "discount": 0.05,
+            "isDisel": true,
+            "numarKm": 5000.0,
+            "numarLocuri": 0,
+            "tip": "standard",
+            "tonaj": 0.0,
             "transmisie": 0
         }
     }
