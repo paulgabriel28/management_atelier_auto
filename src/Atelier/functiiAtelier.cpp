@@ -100,10 +100,7 @@ short nouaMasinaInAtelier() {
             long long timeUnix = ZileToUnix(zile);
             vec[preferintaAngajat]->setUnixIntrariAtelier((int)loc, timeUnix);
             
-            unsigned short int bacsis = 0;
-            citesteValoare("Introdu bacsisul dorit");
-            cin >> bacsis;
-            
+            double bacsis = masina->getPolita() * 0.01;
             intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, true, false, bacsis);
             sendSuccess("Masina a fost adaugata cu succes la angajatul ales!");
             salveazaAngajatiToJson(vec, nrAngajati);
@@ -135,9 +132,7 @@ short nouaMasinaInAtelier() {
                         sendSuccess("Masina a fost adaugata cu succes la angajatul cu ID-ul " + i);
                         preferintaAngajat = 0;
 
-                        unsigned short int bacsis = 0;
-                        citesteValoare("Introdu bacsisul dorit");
-                        cin >> bacsis;
+                        double bacsis = masina->getPolita() * 0.01;
                         intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, true, false, bacsis);
                         salveazaAngajatiToJson(vec, nrAngajati);
                         return 1;
@@ -146,9 +141,7 @@ short nouaMasinaInAtelier() {
             }
             else if(dorinta == 2) {
                 vec[preferintaAngajat]->addMasiniInAsteptare(tipMasina, getCurrentTime());
-                unsigned short int bacsis = 0;
-                citesteValoare("Introdu bacsisul dorit");
-                cin >> bacsis;
+                double bacsis = masina->getPolita() * 0.01;
                 intrareInAtelier(vec[preferintaAngajat], masina, 0, true, true, bacsis);
 
                 sendInfo("Ai fost adaugat in lista de asteptare pentru angajatul ales!");
@@ -174,9 +167,7 @@ short nouaMasinaInAtelier() {
                 long long timeUnix = ZileToUnix(zile);
                 vec[i]->setUnixIntrariAtelier((int)loc, timeUnix);
                 
-                unsigned short int bacsis = 0;
-                citesteValoare("Introdu bacsisul dorit");
-                cin >> bacsis;
+                double bacsis = masina->getPolita() * 0.01;
                 intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, false, false, bacsis);
 
                 sendSuccess("Masina a fost adaugata cu succes la angajatul cu ID-ul " + i);
