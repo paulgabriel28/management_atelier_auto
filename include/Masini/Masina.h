@@ -11,10 +11,11 @@ class Masina {
         unsigned int anFabricare;
         bool isDisel;
         double discount = 0;
+        unsigned int idAngajat = 0;
     
     public:
         Masina();
-        Masina(const double &, const unsigned int &, const bool &);
+        Masina(const double &, const unsigned int &, const bool &, const unsigned int &);
         virtual ~Masina();
 
         unsigned int getVechime() const;

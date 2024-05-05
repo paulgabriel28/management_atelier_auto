@@ -5,8 +5,8 @@ Autobuz::Autobuz() {
     discount = 0.10;
 }
 
-Autobuz::Autobuz(const double &nrKm, const unsigned int &an, const bool &disel, const unsigned int &nrLoc)
-                : Masina(nrKm, an, disel), numarLocuri(nrLoc) {
+Autobuz::Autobuz(const double &nrKm, const unsigned int &an, const bool &disel, const unsigned int &id, const unsigned int &nrLoc)
+                : Masina(nrKm, an, disel, id), numarLocuri(nrLoc) {
     discount = 0.10;
 }
 

@@ -45,7 +45,7 @@ Masina* citesteMasina(const string &tip) {
                     sendInfo("Masina are transmisie automata? (1 - da, 0 - nu)");
                 }
             } while(transmisie != 0 && transmisie != 1);
-            masina = new Standard(numarKm, anFabricare, isDisel, (transmisie == 1 ? AUTOMAT : MANUAL));
+            masina = new Standard(numarKm, anFabricare, isDisel, 0, (transmisie == 1 ? AUTOMAT : MANUAL));
             break;
         }
         
@@ -53,7 +53,7 @@ Masina* citesteMasina(const string &tip) {
             unsigned int numarLocuri = 0;
             citesteValoare("Introdu numarul de locuri");
             cin >> numarLocuri;
-            masina = new Autobuz(numarKm, anFabricare, isDisel, numarLocuri);
+            masina = new Autobuz(numarKm, anFabricare, isDisel, 0, numarLocuri);
             break;
         }
 
@@ -61,7 +61,7 @@ Masina* citesteMasina(const string &tip) {
             double tonaj = 0;
             citesteValoare("Introdu tonajul");
             cin >> tonaj;
-            masina = new Camion(numarKm, anFabricare, isDisel, tonaj);
+            masina = new Camion(numarKm, anFabricare, isDisel, 0, tonaj);
             break;
         }
         

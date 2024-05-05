@@ -8,7 +8,7 @@ class Standard final: public Masina {
     
     public:
         Standard();
-        Standard(const double &, const unsigned int &, const bool &, const typeTransmisie &);
+        Standard(const double &, const unsigned int &, const bool &, const unsigned int &, const typeTransmisie &);
 
         typeTransmisie getTransmisie() const;
 };

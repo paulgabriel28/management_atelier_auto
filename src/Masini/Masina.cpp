@@ -7,8 +7,8 @@ Masina::Masina() {
     Masina::ID++;
 }
 
-Masina::Masina(const double &nrKm, const unsigned int &an, const bool &disel)
-                : numarKm(nrKm), anFabricare(an), isDisel(disel) {
+Masina::Masina(const double &nrKm, const unsigned int &an, const bool &disel, const unsigned int &angajat)
+                : numarKm(nrKm), anFabricare(an), isDisel(disel),idAngajat(angajat) {
     Masina::ID++;
 }
 
