@@ -1,13 +1,5 @@
 #include "../../include/Rapoarte/Rapoarte.h"
 
-/*
-sendMeniuOption(2, "Vezi angajatul cu cele mai multe comenzi intr-o zi"); - done
-sendMeniuOption(3, "Top 3 angajati cu cea mai mare valoare a politelor de asigurare"); - done
-sendMeniuOption(4, "Top 3 angajati care au reparat cele mai multe autobuze noi"); - done
-sendMeniuOption(5, "Top 3 cei mai solicitiati angajati"); - done
-sendMeniuOption(6, "Bacsisul fiecarui angajat");
-*/
-
 bool unixInDateString(const long long &unix, const string *data) {
     time_t unixTime = unix;
     struct tm *time = localtime(&unixTime);
