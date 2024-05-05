@@ -8,4 +8,6 @@ class Camion final: public Masina {
     public:
         Camion();
         Camion(const double &, const unsigned int &, const bool &, const double &);
+
+        double getTonaj() const;
 };

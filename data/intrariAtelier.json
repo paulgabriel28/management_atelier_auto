@@ -1,8 +1,11 @@
 [
     {
-        "dataUnix": 0,
         "idAngajat": 0,
+        "dataIntrareUnix": 0,
+        "dataIesireUnix": 0,
         "cerereSpeciala": 0,
+        "inAsteptare": 0,
+        "bacsis": 0,
         "masina": {
             "tip": "-",
             "numarKm": 0,

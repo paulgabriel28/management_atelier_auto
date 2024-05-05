@@ -9,3 +9,7 @@ Camion::Camion(const double &nrKm, const unsigned int &an, const bool &disel, co
                 : Masina(nrKm, an, disel), tonaj(tona) {
     discount = 0.15;
 }
+
+double Camion::getTonaj() const {
+    return tonaj;
+}

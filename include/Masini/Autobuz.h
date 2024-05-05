@@ -8,4 +8,6 @@ class Autobuz final: public Masina {
     public:
         Autobuz();
         Autobuz(const double &, const unsigned int &, const bool &, const unsigned int &);
+
+        unsigned int getNumarLocuri() const;
 };
