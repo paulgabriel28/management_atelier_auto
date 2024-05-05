@@ -37,7 +37,6 @@ vectorMasiniPoz getLocLiber(Angajat *const *vec, const unsigned int &preferintaA
     return vectorNULL;  
 }
 
-// NOTE: cand se apeleaza atelier din meniu, sa se verifice daca e deschis adica exista cel puti un angajat
 short nouaMasinaInAtelier() {
     Angajat **vec = nullptr;
     unsigned int nrAngajati = 0;
