@@ -6,6 +6,6 @@ class Camion final: public Masina {
     double tonaj;
 
     public:
-        inline Camion();
-        inline Camion(const double &, const unsigned int &, const bool &, const double &);
+        Camion();
+        Camion(const double &, const unsigned int &, const bool &, const double &);
 };

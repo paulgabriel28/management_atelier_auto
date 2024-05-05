@@ -15,8 +15,6 @@
 
 using namespace std;
 
-unsigned int getVechime(const unsigned int &);
-
 typeMasini stringToTypeMasina(const string &);
 
 Masina* citesteMasina();
