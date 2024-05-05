@@ -1,7 +1,7 @@
 #include "../../include/Atelier/functiiAtelier.h"
 
 // NOTE: cand se apeleaza atelier din meniu, sa se verifice daca e deschis adica exista cel puti un angajat
-vectorMasiniPoz getLocLiber(const Angajat **vec, const unsigned int &preferintaAngajat, const typeMasini &tipMasina) {
+vectorMasiniPoz getLocLiber(Angajat *const *vec, const unsigned int &preferintaAngajat, const typeMasini &tipMasina) {
     switch (tipMasina)
     {
         case tipSTANDARD: {
