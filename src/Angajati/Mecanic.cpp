@@ -4,8 +4,8 @@ Mecanic::Mecanic() {
     coeficientSalariu = 1.5;
 }
 
-Mecanic::Mecanic(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) 
-                    : Angajat(nume, prenume, dataNastere, dataAngajare, unixOcupat) {
+Mecanic::Mecanic(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat, const unsigned int &nrAsteptare, masinaInAsteptare *masiniAsteptare) 
+                    : Angajat(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrAsteptare, masiniAsteptare) {
     coeficientSalariu = 1.5;
 }
 

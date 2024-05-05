@@ -9,3 +9,7 @@ Autobuz::Autobuz(const double &nrKm, const unsigned int &an, const bool &disel, 
                 : Masina(nrKm, an, disel), numarLocuri(nrLoc) {
     discount = 0.10;
 }
+
+unsigned int Autobuz::getNumarLocuri() const {
+    return numarLocuri;
+}

@@ -138,13 +138,6 @@ void sortVectorAngajatiByID(Angajat **vec, const unsigned int &dim) {
     }
 }
 
-void editAngajatById() {
-    // TODO: Citeste fisierul "../../data/Angajati.json" pentru a citi angajatii
-    // Angajat **vec;
-    // unsigned int dim;
-    // TODO: citesteAngajati(vec, dim);
-}
-
 string getTypeAngajat(const Angajat* angajat) {
     if (dynamic_cast<const Asistent*>(angajat)) {
         return "asistent";
@@ -168,4 +161,13 @@ void copyVectorAngajat(Angajat **&copyVec, Angajat **vec, const unsigned int &di
     for(unsigned int i = 0; i < dim; i++) {
         copyVec[i] = vec[i];
     }
+}
+
+bool existaIdAngajat(Angajat *const *vec, const unsigned int &dim, const int &id) {
+    for(unsigned int i = 0; i < dim; i++) {
+        if(int(vec[i]->getIdAngajat()) == id) {
+            return true;
+        }
+    }
+    return false;
 }

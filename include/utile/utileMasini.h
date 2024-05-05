@@ -1,9 +1,22 @@
+#pragma once
+
+#include <string>
 #include <ctime>
+#include <algorithm>
 
-unsigned int getVechime(const unsigned int &an) {
-    time_t timpPrezent = time(nullptr);
-    tm* structTmPrezent = localtime(&timpPrezent);
-    unsigned int anPrezent = structTmPrezent->tm_year + 1900;
+#include "../enum.h"
+#include "../Masini/Masina.h"
+#include "../utile/functions.h"
 
-    return anPrezent - an;
-}
+#include "../Masini/Masina.h"
+#include "../Masini/Autobuz.h"
+#include "../Masini/Camion.h"
+#include "../Masini/Standard.h"
+
+using namespace std;
+
+typeMasini stringToTypeMasina(const string &);
+
+Masina* citesteMasina();
+
+string getTypeMasina(const Masina *);

@@ -22,9 +22,11 @@ Angajat::Angajat() {
     for (int i = 0; i < 5; i++) {
         unixOcupat[i] = 0;
     }
+    masiniInAsteptare = nullptr;
+    nrMasiniInAsteptare = 0;
 }
 
-Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) {
+Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat, const unsigned int &nrAsteptare, masinaInAsteptare *masiniAsteptare) {
     idAngajat = ID++;
     this->nume = nume;
     this->prenume = prenume;
@@ -36,11 +38,51 @@ Angajat::Angajat(const string &nume, const string &prenume, const string *dataNa
         this->unixOcupat[i] = unixOcupat[i];
     }
     coeficientSalariu = 0;
+
+    nrMasiniInAsteptare = nrAsteptare;
+    masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
+    for (unsigned int i = 0; i < nrMasiniInAsteptare; i++) {
+        masiniInAsteptare[i] = masiniAsteptare[i];
+    }
+}
+
+Angajat::Angajat(const Angajat &a) {
+    masiniInAsteptare = nullptr;
+    *this = a;
+}
+
+Angajat& Angajat::operator=(const Angajat &a) {
+    if(this != &a) {
+        idAngajat = a.idAngajat;
+        nume = a.nume;
+        prenume = a.prenume;
+        for (int i = 0; i < 3; i++) {
+            dataNastere[i] = a.dataNastere[i];
+            dataAngajare[i] = a.dataAngajare[i];
+        }
+        for (int i = 0; i < 5; i++) {
+            unixOcupat[i] = a.unixOcupat[i];
+        }
+        coeficientSalariu = a.coeficientSalariu;
+        nrMasiniInAsteptare = a.nrMasiniInAsteptare;
+        
+        delete [] masiniInAsteptare;
+        masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
+        for (unsigned int i = 0; i < nrMasiniInAsteptare; i++) {
+            masiniInAsteptare[i] = a.masiniInAsteptare[i];
+        }
+    }
+    return *this;
+
 }
 
 // MARK: - Destructor
 Angajat::~Angajat() {
     ID--;
+
+    delete[] masiniInAsteptare;
+    masiniInAsteptare = nullptr;
+    nrMasiniInAsteptare = 0;
 }
 
 unsigned int Angajat::getID() {
@@ -274,20 +316,22 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
         citesteAngajat(nume, prenume, dataNastere, dataAngajare);
 
         long long unixOcupat[5] = {0};
+        unsigned int nrAsteptare = 0;
+        masinaInAsteptare *masiniAsteptare = nullptr;
 
         switch (type) { 
             case DIRECTOR: {
-                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrAsteptare, masiniAsteptare);
                 break;
             }
 
             case MECANIC: {
-                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrAsteptare, masiniAsteptare);
                 break;
             }
 
             case ASISTENT: {
-                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrAsteptare, masiniAsteptare);
                 break;
             }
 
@@ -361,4 +405,34 @@ void Angajat::setUnixIntrariAtelier(const unsigned int &poz, const int &val) {
 
 auto Angajat::getUnixIntrariAtelier(const unsigned int &poz) const -> long long{
     return unixOcupat[poz];
+}
+
+
+// MARK: MasiniInAsteptare
+unsigned int Angajat::getNrMasiniInAsteptare() const {
+    return nrMasiniInAsteptare;
+}
+
+void Angajat::addMasiniInAsteptare(const typeMasini &tip, const long long &unix) {
+    nrMasiniInAsteptare++;
+    
+    masinaInAsteptare *copyMasini = new masinaInAsteptare[nrMasiniInAsteptare];
+    for (unsigned int i = 0; i < nrMasiniInAsteptare - 1; i++) {
+        copyMasini[i] = masiniInAsteptare[i];
+    }
+    delete [] masiniInAsteptare;
+    masiniInAsteptare = nullptr;
+
+    masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
+    for (unsigned int i = 0; i < nrMasiniInAsteptare - 1; i++) {
+        masiniInAsteptare[i] = copyMasini[i];
+    }
+    delete [] copyMasini;
+
+    masiniInAsteptare[nrMasiniInAsteptare - 1].tip = tip;
+    masiniInAsteptare[nrMasiniInAsteptare - 1].unixIntrare = unix;
+}
+
+masinaInAsteptare* Angajat::getMasiniInAsteptare() const {
+    return masiniInAsteptare;
 }

@@ -26,6 +26,14 @@ enum vectorMasiniPoz {
     CAMION
 };
 
+enum typeMasini {
+    tipNULL = -1,
+    tipMASINA = 0,
+    tipSTANDARD,
+    tipAUTOBUZ,
+    tipCAMION
+};
+
 enum dataEnum {
     ZIUA = 0,
     LUNA,

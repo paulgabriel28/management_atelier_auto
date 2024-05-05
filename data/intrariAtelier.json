@@ -1,0 +1,20 @@
+[
+    {
+        "idAngajat": 0,
+        "dataIntrareUnix": 0,
+        "dataIesireUnix": 0,
+        "cerereSpeciala": 0,
+        "inAsteptare": 0,
+        "bacsis": 0,
+        "masina": {
+            "tip": "-",
+            "numarKm": 0,
+            "anFabricare": 0,
+            "isDisel": 0,
+            "discount": 0,
+            "numarLocuri": 0,
+            "tonaj": 0,
+            "transmisie": 0
+        }
+    }
+]
