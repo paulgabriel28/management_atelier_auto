@@ -11,6 +11,8 @@
             "zi": "0"
         },
         "id": 0,
+        "masiniInAsteptare": [],
+        "nrMasiniInAsteptare": 0,
         "nume": "Marius",
         "prenume": "Andrei",
         "type": "asistent",
@@ -22,43 +24,30 @@
                 "2": 0,
                 "3": 0
             }
-        },
-        "nrMasiniInAsteptare": 0,
-        "masiniInAsteptare": [
-            {
-                "tip": "-",
-                "unixIntrare": 0
-            },
-            {
-                "tip": "-",
-                "unixIntrare": 0
-            },
-            {
-                "tip": "-",
-                "unixIntrare": 0
-            }
-        ]
+        }
     },
     "1": {
         "dataAngajare": {
-            "an": "2020",
+            "an": "2024",
             "luna": "02",
-            "zi": "20"
-        },
-        "dataNastere": {
-            "an": "2001",
-            "luna": "01",
             "zi": "01"
         },
-        "id": 2,
-        "nume": "Gigi",
-        "prenume": "Becali",
-        "type": "director",
+        "dataNastere": {
+            "an": "2004",
+            "luna": "07",
+            "zi": "28"
+        },
+        "id": 1,
+        "masiniInAsteptare": [],
+        "nrMasiniInAsteptare": 0,
+        "nume": "Becali",
+        "prenume": "Messi",
+        "type": "mecanic",
         "unixOcupat": {
             "autobuz": 0,
             "camion": 0,
             "masini": {
-                "1": 0,
+                "1": 1717519993,
                 "2": 0,
                 "3": 0
             }

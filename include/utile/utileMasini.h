@@ -17,6 +17,6 @@ using namespace std;
 
 typeMasini stringToTypeMasina(const string &);
 
-Masina* citesteMasina();
+Masina* citesteMasina(const string &);
 
 string getTypeMasina(const Masina *);

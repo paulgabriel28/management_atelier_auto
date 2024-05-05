@@ -42,13 +42,24 @@ short nouaMasinaInAtelier() {
     unsigned int nrAngajati = 0;
 
     typeMasini tipMasina = tipNULL;
-    
     citesteAngajatiJSON(vec, nrAngajati);
 
     sendInfo("Urmeaza sa adaugi o masina noua in atelier!");
     sendInfo("Pentru a continua, este nevoie de tipul masinii\nTipuri de masini dispinibile:\n\t standard \t|\t autobuz \t|\t camion");
     
-    Masina *masina = citesteMasina();
+    string tip;
+    do {
+        citesteValoare("Introdu tipul masinii");
+        cin >> tip;
+        tipMasina = stringToTypeMasina(tip);
+        if(stringToTypeMasina(tip) == tipNULL) {
+            sendError("Tipul masinii introdus nu este corect!");
+            sendInfo("Tipuri de masini dispinibile:\n\t standard \t|\t autobuz \t|\t camion");
+        }
+    } while(stringToTypeMasina(tip) == tipNULL);
+
+
+    Masina *masina = citesteMasina(tip);
 
     char preferinta;
     int preferintaAngajat = -2;
@@ -65,7 +76,7 @@ short nouaMasinaInAtelier() {
             }
 
             do {
-                citesteValoare("Introdu ID-ul angajatului: ");
+                citesteValoare("Introdu ID-ul angajatului");
                 cin >> preferintaAngajat;
                 if(preferintaAngajat >= (int)nrAngajati) {
                     sendError("Angajatul ales nu exista!");
@@ -79,35 +90,36 @@ short nouaMasinaInAtelier() {
             sendError("Optiunea aleasa nu este corecta!");
         }
     } while(preferintaAngajat == -2);
-
+    
     if(preferintaAngajat != -1) {
         vectorMasiniPoz loc = getLocLiber(vec, preferintaAngajat, tipMasina);
         if(loc != vectorNULL) {
             int zile = 0;
-            citesteValoare("Introdu numarul de zile pana cand masina va fi scoasa din atelier: ");
+            citesteValoare("Introdu numarul de zile pana cand masina va fi scoasa din atelier");
             cin >> zile;
             long long timeUnix = ZileToUnix(zile);
             vec[preferintaAngajat]->setUnixIntrariAtelier((int)loc, timeUnix);
             
             unsigned short int bacsis = 0;
-            citesteValoare("Introdu bacsisul dorit: ");
+            citesteValoare("Introdu bacsisul dorit");
             cin >> bacsis;
             
-            intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, false, false, bacsis);
+            intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, true, false, bacsis);
             sendSuccess("Masina a fost adaugata cu succes la angajatul ales!");
+            salveazaAngajatiToJson(vec, nrAngajati);
             return 1;
         }
-        else {
+        else if(loc == vectorNULL) {
             sendError("Angajatul ales nu are locuri disponibile pentru masina de tipul ales!");
             sendInfo("Doresti ca sistemul sa aleaga un angajat, sau doresti sa ramai in lsita de asteptare pentru angajatul ales!\n\t1 - Alege un angajat automat \t|\t 2 - Ramai in lista de asteptare pentru angajatul ales");
-            citesteValoare("Introdu optiunea: ");
+            citesteValoare("Introdu optiunea");
             unsigned short int dorinta = 0;
             do {
                 cin >> dorinta;
                 if(dorinta > 2) {
                     clearChat();
                     sendError("Optiunea aleasa nu este corecta!\n\t1 - Alege un angajat automat \t|\t 2 - Ramai in lista de asteptare pentru angajatul ales \t|\t 0 - Nu adauga masina");
-                    citesteValoare("Introdu optiunea: ");
+                    citesteValoare("Introdu optiunea");
                 }
             } while(dorinta > 2);
 
@@ -116,7 +128,7 @@ short nouaMasinaInAtelier() {
                     vectorMasiniPoz loc = getLocLiber(vec, i, tipMasina);
                     if(loc != vectorNULL) {
                         int zile = 0;
-                        citesteValoare("Introdu numarul de zile pana cand masina va fi scoasa din atelier: ");
+                        citesteValoare("Introdu numarul de zile pana cand masina va fi scoasa din atelier");
                         cin >> zile;
                         long long timeUnix = ZileToUnix(zile);
                         vec[i]->setUnixIntrariAtelier((int)loc, timeUnix);
@@ -124,9 +136,10 @@ short nouaMasinaInAtelier() {
                         preferintaAngajat = 0;
 
                         unsigned short int bacsis = 0;
-                        citesteValoare("Introdu bacsisul dorit: ");
+                        citesteValoare("Introdu bacsisul dorit");
                         cin >> bacsis;
                         intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, true, false, bacsis);
+                        salveazaAngajatiToJson(vec, nrAngajati);
                         return 1;
                     }
                 }
@@ -134,11 +147,12 @@ short nouaMasinaInAtelier() {
             else if(dorinta == 2) {
                 vec[preferintaAngajat]->addMasiniInAsteptare(tipMasina, getCurrentTime());
                 unsigned short int bacsis = 0;
-                citesteValoare("Introdu bacsisul dorit: ");
+                citesteValoare("Introdu bacsisul dorit");
                 cin >> bacsis;
                 intrareInAtelier(vec[preferintaAngajat], masina, 0, true, true, bacsis);
 
                 sendInfo("Ai fost adaugat in lista de asteptare pentru angajatul ales!");
+                salveazaAngajatiToJson(vec, nrAngajati);
                 return 1;
             }
             else if(dorinta == 0) {
@@ -148,22 +162,25 @@ short nouaMasinaInAtelier() {
         }
     }
     else if (preferintaAngajat == -1){
+        sendInfo("Vei fi repartizat la un angajat disponibil!");
+
         unsigned int incercariAngajati = 0;
         for(unsigned int i = 0; i < nrAngajati; i++) {
             vectorMasiniPoz loc = getLocLiber(vec, i, tipMasina);
             if(loc != vectorNULL) {
                 int zile = 0;
-                citesteValoare("Introdu numarul de zile pana cand masina va fi scoasa din atelier: ");
+                citesteValoare("Introdu numarul de zile pana cand masina va fi scoasa din atelier");
                 cin >> zile;
                 long long timeUnix = ZileToUnix(zile);
                 vec[i]->setUnixIntrariAtelier((int)loc, timeUnix);
                 
                 unsigned short int bacsis = 0;
-                citesteValoare("Introdu bacsisul dorit: ");
+                citesteValoare("Introdu bacsisul dorit");
                 cin >> bacsis;
                 intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, false, false, bacsis);
 
                 sendSuccess("Masina a fost adaugata cu succes la angajatul cu ID-ul " + i);
+                salveazaAngajatiToJson(vec, nrAngajati);
                 return 1;
             }
             else {
@@ -191,6 +208,7 @@ short nouaMasinaInAtelier() {
                     
                     intrareInAtelier(vec[preferintaAngajat], masina, 0, false, true, 0);
                     sendInfo("Ti-am cautat cel mai liber angajat, acesta va lua masina in curand!");
+                    salveazaAngajatiToJson(vec, nrAngajati);
                     return 1;
                 }
                 else if(dorinta == 'N' || dorinta == 'n') {
