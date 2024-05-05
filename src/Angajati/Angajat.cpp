@@ -22,6 +22,8 @@ Angajat::Angajat() {
     for (int i = 0; i < 5; i++) {
         unixOcupat[i] = 0;
     }
+    masiniInAsteptare = nullptr;
+    nrMasiniInAsteptare = 0;
 }
 
 Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) {
@@ -36,11 +38,48 @@ Angajat::Angajat(const string &nume, const string &prenume, const string *dataNa
         this->unixOcupat[i] = unixOcupat[i];
     }
     coeficientSalariu = 0;
+
+    masiniInAsteptare = nullptr;
+    nrMasiniInAsteptare = 0;
+}
+
+Angajat::Angajat(const Angajat &a) {
+    masiniInAsteptare = nullptr;
+    *this = a;
+}
+
+Angajat& Angajat::operator=(const Angajat &a) {
+    if(this != &a) {
+        idAngajat = a.idAngajat;
+        nume = a.nume;
+        prenume = a.prenume;
+        for (int i = 0; i < 3; i++) {
+            dataNastere[i] = a.dataNastere[i];
+            dataAngajare[i] = a.dataAngajare[i];
+        }
+        for (int i = 0; i < 5; i++) {
+            unixOcupat[i] = a.unixOcupat[i];
+        }
+        coeficientSalariu = a.coeficientSalariu;
+        nrMasiniInAsteptare = a.nrMasiniInAsteptare;
+        
+        delete [] masiniInAsteptare;
+        masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
+        for (int i = 0; i < nrMasiniInAsteptare; i++) {
+            masiniInAsteptare[i] = a.masiniInAsteptare[i];
+        }
+    }
+    return *this;
+
 }
 
 // MARK: - Destructor
 Angajat::~Angajat() {
     ID--;
+
+    delete[] masiniInAsteptare;
+    masiniInAsteptare = nullptr;
+    nrMasiniInAsteptare = 0;
 }
 
 unsigned int Angajat::getID() {

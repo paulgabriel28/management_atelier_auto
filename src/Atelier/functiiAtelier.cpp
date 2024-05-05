@@ -55,7 +55,13 @@ short nouaMasinaInAtelier() {
         } else {
             sendError("Optiunea aleasa nu este corecta!");
         }
-    } while(preferintaAngajat != -2);
+    } while(preferintaAngajat == -2);
+
+    if(preferintaAngajat == -1) {
+        sendInfo("Masina va fi adaugata in atelier!");
+    } else {
+        sendInfo("Masina va fi adaugata la angajatul ales!");
+    }
     
     return 0;
 }
