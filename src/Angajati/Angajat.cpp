@@ -26,7 +26,7 @@ Angajat::Angajat() {
     nrMasiniInAsteptare = 0;
 }
 
-Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat) {
+Angajat::Angajat(const string &nume, const string &prenume, const string *dataNastere, const string *dataAngajare, const long long *unixOcupat, const unsigned int &nrAsteptare, masinaInAsteptare *masiniAsteptare) {
     idAngajat = ID++;
     this->nume = nume;
     this->prenume = prenume;
@@ -39,8 +39,11 @@ Angajat::Angajat(const string &nume, const string &prenume, const string *dataNa
     }
     coeficientSalariu = 0;
 
-    masiniInAsteptare = nullptr;
-    nrMasiniInAsteptare = 0;
+    nrMasiniInAsteptare = nrAsteptare;
+    masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
+    for (int i = 0; i < nrMasiniInAsteptare; i++) {
+        masiniInAsteptare[i] = masiniAsteptare[i];
+    }
 }
 
 Angajat::Angajat(const Angajat &a) {
@@ -313,20 +316,22 @@ void adaugareAngajat(Angajat **&vec, unsigned int &dim)
         citesteAngajat(nume, prenume, dataNastere, dataAngajare);
 
         long long unixOcupat[5] = {0};
+        unsigned int nrAsteptare = 0;
+        masinaInAsteptare *masiniAsteptare = nullptr;
 
         switch (type) { 
             case DIRECTOR: {
-                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[dim - 1] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrAsteptare, masiniAsteptare);
                 break;
             }
 
             case MECANIC: {
-                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[dim - 1] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrAsteptare, masiniAsteptare);
                 break;
             }
 
             case ASISTENT: {
-                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[dim - 1] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrAsteptare, masiniAsteptare);
                 break;
             }
 

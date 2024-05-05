@@ -13,6 +13,7 @@
 #include "../Angajati/Mecanic.h"
 
 #include "../utile/utileAngajati.h"
+#include "../utile/utileMasini.h"
 
 #include "../enum.h"
 

@@ -25,7 +25,7 @@ class Angajat {
     
     public:
         Angajat();
-        Angajat(const string &, const string &, const string *, const string *, const long long *);
+        Angajat(const string &, const string &, const string *, const string *, const long long *, const unsigned int &, masinaInAsteptare *);
         virtual ~Angajat();
 
         static unsigned int getID();

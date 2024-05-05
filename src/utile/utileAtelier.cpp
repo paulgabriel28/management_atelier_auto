@@ -16,14 +16,3 @@ long long UnixToZile(const long long &nrDays) {
     time_t timeUnix = currentTime + nrDays * 24 * 3600;
     return (long long)timeUnix;
 }
-
-typeMasini stringToTypeMasina(const string &type) {
-    string lowerType = type;
-    transform(lowerType.begin(), lowerType.end(), lowerType.begin(), [](unsigned char c) { return tolower(c); });
-
-    if (lowerType == "masina") return tipMASINA;
-    if (lowerType == "standard") return tipSTANDARD;
-    if (lowerType == "autobuz") return tipAUTOBUZ;
-    if (lowerType == "camion") return tipCAMION;
-    return tipNULL;
-}

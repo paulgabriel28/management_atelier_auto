@@ -22,7 +22,22 @@
                 "2": 0,
                 "3": 0
             }
-        }
+        },
+        "nrMasiniInAsteptare": 0,
+        "masiniInAsteptare": [
+            {
+                "tip": "-",
+                "unixIntrare": 0
+            },
+            {
+                "tip": "-",
+                "unixIntrare": 0
+            },
+            {
+                "tip": "-",
+                "unixIntrare": 0
+            }
+        ]
     },
     "1": {
         "dataAngajare": {
