@@ -40,3 +40,5 @@ void editAngajatById();
 string getTypeAngajat(const Angajat *);
 
 void copyVectorAngajat(Angajat **&, Angajat **, const unsigned int &);
+
+bool existaIdAngajat(Angajat *const *, const unsigned int &, const int &);

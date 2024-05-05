@@ -1,6 +1,7 @@
 #pragma once
-
 #include <string>
+#include "../utile/utileMasini.h"
+
 using namespace std;
 
 class Masina {
