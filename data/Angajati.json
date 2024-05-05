@@ -1,14 +1,14 @@
 {
     "0": {
         "dataAngajare": {
-            "an": "0",
-            "luna": "0",
-            "zi": "0"
+            "an": "2023",
+            "luna": "12",
+            "zi": "01"
         },
         "dataNastere": {
-            "an": "0",
-            "luna": "0",
-            "zi": "0"
+            "an": "01",
+            "luna": "01",
+            "zi": "2000"
         },
         "id": 0,
         "masiniInAsteptare": [],
@@ -41,7 +41,7 @@
         "masiniInAsteptare": [],
         "nrMasiniInAsteptare": 0,
         "nume": "Becali",
-        "prenume": "Messi",
+        "prenume": "Gigi",
         "type": "mecanic",
         "unixOcupat": {
             "autobuz": 0,

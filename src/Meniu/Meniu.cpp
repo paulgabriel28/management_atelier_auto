@@ -42,7 +42,7 @@ void meniuSetari() {
 void meniuAtelier() {
     sendInfo("Meniu atelier");
     sendMeniuOption(1, "Adauga masina in atelier");
-    sendMeniuOption(2, "Vezi angajatul cu cea mai mare productivitate pe o data specificata");
+    sendMeniuOption(2, "Vezi angajatul cu cele mai multe comenzi intr-o zi");
     sendMeniuOption(3, "Top 3 angajati cu cea mai mare valoare a politelor de asigurare");
     sendMeniuOption(4, "Top 3 angajati care au reparat cele mai multe autobuze noi");
     sendMeniuOption(5, "Top 3 cei mai solicitiati angajati");
@@ -91,7 +91,7 @@ void Meniu(const MeniuOptions &meniu) {
         }
 
         case NOUA_OPTIUNE: {
-            sendInfo("Optiunea a fost efectuata cu succes");
+            sendInfo("Actiunea a fost efectuata cu succes!");
             sendInfo("Doresti sa faci o noua actiune?");
             sendQuestion("1 - Da \t|\t 0 - Nu");
             unsigned int option = -1;
@@ -104,7 +104,7 @@ void Meniu(const MeniuOptions &meniu) {
             } while(option != 0 && option != 1);
 
             if(option == 1) {
-                Meniu(MENIU_ATELIER);
+                Meniu(MENIU_PRINCIPAL);
             } 
             else if(option == 0) {
                 Meniu(INCHIDE_MENIU);
@@ -204,22 +204,30 @@ void Meniu(const MeniuOptions &meniu) {
                         case 1: {
                             adaugareAngajat(vec, dim);
                             salveazaAngajatiToJson(vec, dim);
+                            Meniu(NOUA_OPTIUNE);
                             break;
                         }
 
                         case 2: {
                             stergereAngajat(vec, dim);
                             salveazaAngajatiToJson(vec, dim);
+                            Meniu(NOUA_OPTIUNE);
+
                             break;
                         }
 
                         case 3: {                            
                             unsigned int id;
                             sendInfo("Introdu ID-ul angajatului pe care vrei sa il editezi:");
+                            for(unsigned int i = 0; i < dim; i++) {
+                                cout << "\t" << vec[i]->getIdAngajat() << " -> " << vec[i]->getNume() << " " << vec[i]->getPrenume() << endl;
+                            }
                             cout << "\tID: "; cin >> id;
                             vec[id]->editAngajat();
 
                             salveazaAngajatiToJson(vec, dim);
+
+                            Meniu(NOUA_OPTIUNE);
                             break;
                         }
 
@@ -228,6 +236,8 @@ void Meniu(const MeniuOptions &meniu) {
                             sendInfo("Introdu ID-ul angajatului pe care vrei sa il afisezi:");
                             cout << "\tID:"; cin >> id;
                             vec[id]->afisareAngajat();
+
+                            Meniu(NOUA_OPTIUNE);
                             break;
                         }
 
@@ -241,6 +251,8 @@ void Meniu(const MeniuOptions &meniu) {
                                 vec[i]->afisareAngajat();
                             }
                             break;
+
+                            Meniu(NOUA_OPTIUNE);
                         }
 
                         case 0: {

@@ -254,7 +254,7 @@ void Angajat::editAngajat()
                 break;
         }
 
-        sendInfo("Doresti sa mai faci o modificare?\n Y - Da\tN - Nu\n");
+        sendInfo("Doresti sa mai faci o modificare?\n Y - Da \t|\t N - Nu\n");
         citesteValoare("Raspuns");
         char q;
         cin >> q;
