@@ -16,7 +16,7 @@ void meniuAdmin() {
     sendInfo("Meniu admin");
     sendMeniuOption(1, "Angajati");
     sendMeniuOption(2, "Setari");
-    sendMeniuOption(0, "Inapoi");
+    sendMeniuOption(0, "Inapoi - Meniu principal");
     sendQuestion("Alege optiunea dorita!");
 }
 
@@ -27,20 +27,28 @@ void meniuAdminAngajati() {
     sendMeniuOption(3, "Editare angajat [ID]");
     sendMeniuOption(4, "Afisare angajat [ID]");
     sendMeniuOption(5, "Afisare toti angajatii");
-    sendMeniuOption(0, "Inapoi");
+    sendMeniuOption(0, "Inapoi - Meniu admin");
     sendQuestion("Alege optiunea dorita!");
 }
 
 void meniuSetari() {
     sendMeniuOption(1, "Schimba parola");
     sendMeniuOption(2, "Sterge baza de date");
-    sendMeniuOption(0, "Inapoi");
+    sendMeniuOption(0, "Inapoi - Meniu admin");
+    sendQuestion("Alege optiunea dorita!");
 }
 
 
 void meniuAtelier() {
-    clearChat();
-
+    sendInfo("Meniu atelier");
+    sendMeniuOption(1, "Adauga masina in atelier");
+    sendMeniuOption(2, "Vezi angajatul cu cea mai mare productivitate pe o data specificata");
+    sendMeniuOption(3, "Top 3 angajati cu cea mai mare valoare a politelor de asigurare");
+    sendMeniuOption(4, "Top 3 angajati care au reparat cele mai multe autobuze noi");
+    sendMeniuOption(5, "Top 3 cei mai solicitiati angajati");
+    sendMeniuOption(6, "Bacsisul fiecarui angajat");
+    sendMeniuOption(0, "Inapoi - Meniu principal");
+    sendQuestion("Alege optiunea dorita!");
 }
 
 bool correctOption(const unsigned int &option, const MeniuOptions &meniu) {
@@ -214,6 +222,13 @@ void Meniu(const MeniuOptions &meniu) {
                 }
             } while (!correctOption(option, MENIU_ADMIN_ANGAJATI));
             break;
+        }
+
+        case MENIU_ATELIER: {
+            unsigned int option;
+            do {
+
+            } while(!correctOption(option, MENIU_ATELIER));
         }
 
         default:
