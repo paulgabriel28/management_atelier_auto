@@ -166,3 +166,18 @@ void intrareInAtelier(const Angajat *angajat, const Masina *masina, const long l
 
     file.close();
 }
+
+json citesteIntrariAtelier() {
+    fstream file("data/intrariAtelier.json", ios::in);
+    
+    if (!file.is_open()) {
+        sendError("Nu s-a putut deschide fisierul JSON pentru citire.");
+        return json();
+    }
+    
+    json dateExistent;
+    file >> dateExistent;
+    file.close();
+    
+    return dateExistent;
+}
