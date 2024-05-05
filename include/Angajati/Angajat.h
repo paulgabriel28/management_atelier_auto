@@ -53,4 +53,6 @@ class Angajat {
         void setUnixIntrariAtelier(const unsigned int &, const int &);
         auto getUnixIntrariAtelier(const unsigned int &poz) const -> long long;
 
+        void addMasiniInAsteptare(const unsigned int &, const typeMasini &, const long long &);
+        masinaInAsteptare* getMasiniInAsteptare() const;
 };

@@ -406,3 +406,28 @@ void Angajat::setUnixIntrariAtelier(const unsigned int &poz, const int &val) {
 auto Angajat::getUnixIntrariAtelier(const unsigned int &poz) const -> long long{
     return unixOcupat[poz];
 }
+
+// MARK: MasiniInAsteptare
+void Angajat::addMasiniInAsteptare(const unsigned int &nr, const typeMasini &tip, const long long &unix) {
+    nrMasiniInAsteptare++;
+    
+    masinaInAsteptare *copyMasini = new masinaInAsteptare[nrMasiniInAsteptare];
+    for (unsigned int i = 0; i < nrMasiniInAsteptare - 1; i++) {
+        copyMasini[i] = masiniInAsteptare[i];
+    }
+    delete [] masiniInAsteptare;
+    masiniInAsteptare = nullptr;
+
+    masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
+    for (unsigned int i = 0; i < nrMasiniInAsteptare - 1; i++) {
+        masiniInAsteptare[i] = copyMasini[i];
+    }
+    delete [] copyMasini;
+
+    masiniInAsteptare[nrMasiniInAsteptare - 1].tip = tip;
+    masiniInAsteptare[nrMasiniInAsteptare - 1].unixIntrare = unix;
+}
+
+masinaInAsteptare* Angajat::getMasiniInAsteptare() const {
+    return masiniInAsteptare;
+}

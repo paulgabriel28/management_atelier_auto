@@ -1,6 +1,21 @@
 #include "../../include/Atelier/functiiAtelier.h"
 
 // NOTE: cand se apeleaza atelier din meniu, sa se verifice daca e deschis
+
+bool existaLocLiber(const Angajat **vec, const unsigned int &nrAngajati, const typeMasini &tip) {
+    switch (tip)
+    {
+        case tipSTANDARD: {
+            break;
+        }
+    
+        default:
+            break;
+    }
+
+
+}
+
 short nouaMasinaInAtelier() {
     Angajat **vec = nullptr;
     unsigned int nrAngajati = 0;
