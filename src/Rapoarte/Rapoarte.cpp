@@ -255,8 +255,35 @@ void afisareBacsis() {
             continue;
         }
 
+        double numarKm = intrariAtelier[i]["masina"]["numarKm"];
+        unsigned int anFabricare = intrariAtelier[i]["masina"]["anFabricare"];
+        bool isDisel = intrariAtelier[i]["masina"]["isDisel"];
         unsigned int idAngajat = intrariAtelier[i]["angajatID"];
-        double bacsis = intrariAtelier[i]["masina"]["numarKm"] * 0.01;
+        typeMasini tip = stringToTypeMasina(intrariAtelier[i]["masina"]["tip"]);
+
+        Masina *masina = nullptr;
+        switch(tip) {
+            case tipSTANDARD: {
+                masina = new Standard(numarKm, anFabricare, isDisel, idAngajat, (intrariAtelier[i]["masina"]["transmisie"] == 0 ? MANUAL : AUTOMAT));
+                break;
+            }
+
+            case tipAUTOBUZ: {
+                masina = new Autobuz(numarKm, anFabricare, isDisel, idAngajat, intrariAtelier[i]["masina"]["nrLocuri"]);
+                break;
+            }
+
+            case tipCAMION: {
+                masina = new Camion(numarKm, anFabricare, isDisel, idAngajat, intrariAtelier[i]["masina"]["tonaj"]);
+                break;
+            }
+
+            default: {
+                break;
+            }
+        }
+
+        double bacsis = masina->getPolita() * 0.01;
         vecAngajati[idAngajat].bacsis += bacsis;
     }
 
