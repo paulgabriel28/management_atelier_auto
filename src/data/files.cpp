@@ -27,25 +27,34 @@ void citesteAngajatiJSON(Angajat **&vec, unsigned int &dim) {
         string dataAngajare[3] = {(*it)["dataAngajare"]["zi"], (*it)["dataAngajare"]["luna"], (*it)["dataAngajare"]["an"]};
         long long unixOcupat[5] = {(*it)["unixOcupat"]["masini"]["1"], (*it)["unixOcupat"]["masini"]["2"], (*it)["unixOcupat"]["masini"]["3"], (*it)["unixOcupat"]["autobuz"], (*it)["unixOcupat"]["camion"]};
 
+        unsigned int nrMasiniInAsteptare = stringToTypeMasina((*it)["nrMasiniInAsteptare"]);
+        masinaInAsteptare *masiniInAsteptare = new masinaInAsteptare[nrMasiniInAsteptare];
+        for (unsigned int i = 0; i < nrMasiniInAsteptare; ++i) {
+            masiniInAsteptare[i].tip = (*it)["masiniInAsteptare"][i]["tip"];
+            masiniInAsteptare[i].unixIntrare = (*it)["masiniInAsteptare"][i]["unixIntrare"];
+        }
+
         switch (type) {
             case DIRECTOR: {
-                vec[index] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[index] = new Director(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrMasiniInAsteptare, masiniInAsteptare);
                 break;
             }
 
             case MECANIC: {
-                vec[index] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[index] = new Mecanic(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrMasiniInAsteptare, masiniInAsteptare);
                 break;
             }
 
             case ASISTENT: {
-                vec[index] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat);
+                vec[index] = new Asistent(nume, prenume, dataNastere, dataAngajare, unixOcupat, nrMasiniInAsteptare, masiniInAsteptare);
                 break;
             }
             
             default:
                 break;
         }
+
+        delete[] masiniInAsteptare; // Eliberarea memoriei alocate pentru vectorul de masini in asteptare
 
         index++;
     }

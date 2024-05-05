@@ -28,10 +28,10 @@ enum vectorMasiniPoz {
 
 enum typeMasini {
     tipNULL = -1,
-    MASINA = 0,
-    STANDARD,
-    AUTOBUZ,
-    CAMION
+    tipMASINA = 0,
+    tipSTANDARD,
+    tipAUTOBUZ,
+    tipCAMION
 };
 
 enum dataEnum {

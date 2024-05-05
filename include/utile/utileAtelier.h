@@ -9,6 +9,5 @@
 
 using namespace std;
 
-int zileRamaseUnix(const long long &);
-
-typeMasini getTypeFromStringAtelier(const string &);
+long long ZileToUnix(const long long &);
+long long UnixToZile(const long long &);
