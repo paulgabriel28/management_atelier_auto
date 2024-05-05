@@ -81,3 +81,16 @@ Masina* citesteMasina() {
     
     return masina;
 }
+
+string getTypeMasina(const Masina* masina) {
+    if (dynamic_cast<const Standard*>(masina)) {
+        return "standard";
+    } else if (dynamic_cast<const Autobuz*>(masina)) {
+        return "autobuz";
+    } else if (dynamic_cast<const Camion*>(masina)) {
+        return "camion";
+    } else if (dynamic_cast<const Masina*>(masina)) {
+        return "masina";
+    }
+    return "necunoscut";
+}

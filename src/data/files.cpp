@@ -94,7 +94,91 @@ void salveazaAngajatiToJson(Angajat **&vec, unsigned int &dim) {
         return;
     }
 
-    file << setw(4) << json << ::setfill(' ');
+    file << json.dump(4);
+
+    file.close();
+}
+
+void intrareInAtelier(const Angajat *angajat, const Masina *masina, const long long &iesireService, const bool &cerereSpeciala, const bool &inAsteptare, const unsigned short int &bacsis) {
+    /* format JSON:
+    [
+        {
+            "idAngajat": 0,
+            "dataIntrareUnix": 0,
+            "dataIesireUnix": 0,
+            "cerereSpeciala": 0,
+            "inAsteptare": 0,
+            "masina": {
+                "tip": "-",
+                "numarKm": 0,
+                "anFabricare": 0,
+                "isDisel": 0,
+                "discount": 0,
+                "numarLocuri": 0,
+                "tonaj": 0,
+                "transmisie": -1
+            }
+        }
+    ]
+    */
+
+    fstream file("data/intrariAtelier.json", ios::in | ios::out);
+
+    if (!file.is_open()) {
+        sendError("Nu s-a putut deschide fisierul JSON pentru citire/scriere.");
+        return;
+    }
+
+    json dateExistent;
+    file >> dateExistent;
+
+    json json;
+    json["idAngajat"] = angajat->getIdAngajat();
+    json["dataIntrareUnix"] = getCurrentTime();
+    json["dataIesireUnix"] = iesireService;
+    json["cerereSpeciala"] = cerereSpeciala;
+    json["inAsteptare"] = inAsteptare;
+    json["bacsis"] = bacsis;
+
+    json["masina"]["tip"] = getTypeMasina(masina);
+    json["masina"]["numarKm"] = masina->getNumarKm();
+    json["masina"]["anFabricare"] = masina->getAnFabricare();
+    json["masina"]["isDisel"] = masina->getIsDisel();
+    json["masina"]["discount"] = masina->getDiscount();
+
+    unsigned int numarLocuri = 0;
+    double tonaj = 0.0;
+    typeTransmisie transmisie = transmisieNULL;
+
+    switch (stringToTypeMasina(getTypeMasina(masina)))
+    {
+        case tipSTANDARD: {
+            transmisie = dynamic_cast<const Standard*>(masina)->getTransmisie();
+            break;
+        }
+
+        case tipAUTOBUZ: {
+            numarLocuri = dynamic_cast<const Autobuz*>(masina)->getNumarLocuri();
+            break;
+        }
+
+        case tipCAMION: {
+            tonaj = dynamic_cast<const Camion*>(masina)->getTonaj();
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    json["masina"]["numarLocuri"] = numarLocuri;
+    json["masina"]["tonaj"] = tonaj;
+    json["masina"]["transmisie"] = (transmisie == transmisieNULL ? -1 : (transmisie == AUTOMAT ? 1 : 0));
+
+    
+    dateExistent.push_back(json);
+    file.seekp(0);
+    file << dateExistent.dump(4);
 
     file.close();
 }

@@ -44,3 +44,11 @@ unsigned int Masina::getVechime() const {
 
     return anPrezent - anFabricare;
 }
+
+bool Masina::getIsDisel() const {
+    return isDisel;
+}
+
+double Masina::getDiscount() const {
+    return discount;
+}

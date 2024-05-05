@@ -1,6 +1,5 @@
 #include "../../include/Atelier/functiiAtelier.h"
 
-// NOTE: cand se apeleaza atelier din meniu, sa se verifice daca e deschis adica exista cel puti un angajat
 vectorMasiniPoz getLocLiber(Angajat *const *vec, const unsigned int &preferintaAngajat, const typeMasini &tipMasina) {
     switch (tipMasina)
     {
@@ -38,6 +37,7 @@ vectorMasiniPoz getLocLiber(Angajat *const *vec, const unsigned int &preferintaA
     return vectorNULL;  
 }
 
+// NOTE: cand se apeleaza atelier din meniu, sa se verifice daca e deschis adica exista cel puti un angajat
 short nouaMasinaInAtelier() {
     Angajat **vec = nullptr;
     unsigned int nrAngajati = 0;
@@ -49,20 +49,7 @@ short nouaMasinaInAtelier() {
     sendInfo("Urmeaza sa adaugi o masina noua in atelier!");
     sendInfo("Pentru a continua, este nevoie de tipul masinii\nTipuri de masini dispinibile:\n\t standard \t|\t autobuz \t|\t camion");
     
-    string tipMasinaString;
-    do {
-        citesteValoare("Introdu tipul masinii: ");
-        cin >> tipMasinaString;
-        tipMasina = stringToTypeMasina(tipMasinaString);
-
-        if(tipMasina == tipNULL) {
-            sendError("Tipul masinii introdus nu este corect!");
-            sendInfo("Tipuri de masini dispinibile:\n\t standard \t|\t autobuz \t|\t camion");
-        }
-    } while(tipMasina == tipNULL);
-    
-    clearChat();
-    sendSuccess("Tipul masinii a fost setat cu succes!");
+    Masina *masina = citesteMasina();
 
     char preferinta;
     int preferintaAngajat = -2;
@@ -145,7 +132,7 @@ short nouaMasinaInAtelier() {
             }
         }
     }
-    else {
+    else if (preferintaAngajat == -1){
         unsigned int incercariAngajati = 0;
         for(unsigned int i = 0; i < nrAngajati; i++) {
             vectorMasiniPoz loc = getLocLiber(vec, i, tipMasina);

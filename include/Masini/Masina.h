@@ -23,4 +23,6 @@ class Masina {
         double virtual getPolita() const;
         unsigned int getAnFabricare() const;
         double getNumarKm() const;
+        bool getIsDisel() const;
+        double getDiscount() const;
 };

@@ -23,3 +23,5 @@ using json = nlohmann::json;
 void citesteAngajatiJSON(Angajat **&, unsigned int &);
 
 void salveazaAngajatiToJson(Angajat **&, unsigned int &);
+
+void intrareInAtelier(const Angajat *, const Masina *, const long long &, const bool &, const bool &, const unsigned short int &);

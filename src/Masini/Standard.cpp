@@ -9,3 +9,7 @@ Standard::Standard() {
     discount = 0.05;
     transmisie = transmisieNULL;
 }
+
+typeTransmisie Standard::getTransmisie() const {
+    return transmisie;
+}

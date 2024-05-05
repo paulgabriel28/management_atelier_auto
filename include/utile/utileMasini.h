@@ -18,3 +18,5 @@ using namespace std;
 typeMasini stringToTypeMasina(const string &);
 
 Masina* citesteMasina();
+
+string getTypeMasina(const Masina *);
