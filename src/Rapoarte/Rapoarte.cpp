@@ -4,7 +4,7 @@ bool unixInDateString(const long long &unix, const string *data) {
     time_t unixTime = unix;
     struct tm *time = localtime(&unixTime);
 
-    if(time->tm_mday == stoi(data[ZIUA]) && time->tm_mon == stoi(data[LUNA]) && time->tm_year == stoi(data[AN])) {
+    if(time->tm_mday == stoi(data[ZIUA]) && time->tm_mon == stoi(data[LUNA]) - 1 && time->tm_year + 1900 == stoi(data[AN])) {
         return true;
     }
 
@@ -32,6 +32,7 @@ void comenxiMaxZi(const string *data) {
         if(unixInDateString(intrariAtelier[i]["dataIntrareUnix"], data)) {
             if(intrariAtelier[i]["inAsteptare"]) {
                 vecAngajati[(int)intrariAtelier[i]["idAngajat"]].nrComenziAsteptare++;
+                cout <<"barosan\n";
             } else {
                 vecAngajati[(int)intrariAtelier[i]["idAngajat"]].nrComenzi++;
             }            

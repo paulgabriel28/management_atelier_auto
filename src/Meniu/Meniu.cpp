@@ -93,20 +93,20 @@ void Meniu(const MeniuOptions &meniu) {
         case NOUA_OPTIUNE: {
             sendInfo("Actiunea a fost efectuata cu succes!");
             sendInfo("Doresti sa faci o noua actiune?");
-            sendQuestion("1 - Da \t|\t 0 - Nu");
-            unsigned int option = -1;
+            sendQuestion("Y - Da \t|\t N - Nu");
+            char option = ' ';
             do {
                 cin >> option;
-                if(option != 0 && option != 1) {
+                if(option != 'Y' && option != 'y' && option != 'N' && option != 'n'){
                     sendError("Optiunea aleasa nu este corecta!");
                     sendQuestion("1 - Da \t|\t 0 - Nu");
                 }
-            } while(option != 0 && option != 1);
+            } while(option != 'Y' && option != 'y' && option != 'N' && option != 'n');
 
-            if(option == 1) {
+            if(option == 'Y' || option == 'y') {
                 Meniu(MENIU_PRINCIPAL);
             } 
-            else if(option == 0) {
+            else if(option == 'N' || option == 'n') {
                 Meniu(INCHIDE_MENIU);
             }
 
