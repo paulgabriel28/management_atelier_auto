@@ -351,7 +351,44 @@ void Meniu(const MeniuOptions &meniu) {
         }
 
         case MENIU_SETARI: {
-            
+            clearChat();
+            sendError("Optiunea nu este disponibila in acest moment!");
+            Meniu(NOUA_OPTIUNE);
+            // unsigned int option;
+            // do {
+            //     meniuSetari();
+            //     citesteValoare("Optiune");
+            //     cin >> option;
+
+            //     if(correctOption(option, MENIU_SETARI)) {
+            //         switch (option)
+            //         {
+            //             case 1: {
+            //                 // schimbaParola();
+            //                 Meniu(NOUA_OPTIUNE);
+            //                 break;
+            //             }
+
+            //             case 2: {
+            //                 // stergeBazaDate();
+            //                 Meniu(NOUA_OPTIUNE);
+            //                 break;
+            //             }
+
+            //             case 0: {
+            //                 Meniu(MENIU_ADMIN);
+            //                 break;
+            //             }
+
+            //             default:
+            //                 break;
+            //         }
+            //     } else {
+            //         clearChat();
+            //         sendError("Optiunea aleasa nu este corecta!");
+            //     }
+            // } while (!correctOption(option, MENIU_SETARI));
+            break;
         }
         default:
             break;
