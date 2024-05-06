@@ -60,6 +60,7 @@ short nouaMasinaInAtelier() {
 
 
     Masina *masina = citesteMasina(tip);
+    cout << masina->getPolita() << endl;
 
     char preferinta;
     int preferintaAngajat = -2;
@@ -166,7 +167,7 @@ short nouaMasinaInAtelier() {
                 cin >> zile;
                 long long timeUnix = ZileToUnix(zile);
                 vec[i]->setUnixIntrariAtelier((int)loc, timeUnix);
-                
+                sendInfo("Masina a fost adaugata cu succes la angajatul cu ID-ul " + to_string(i) + " si va fi scoasa din atelier in " + to_string(zile) + " zile");
                 double bacsis = masina->getPolita() * 0.01;
                 intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, false, false, bacsis);
 

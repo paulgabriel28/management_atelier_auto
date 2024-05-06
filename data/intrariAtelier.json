@@ -1,23 +1,5 @@
 [
     {
-        "bacsis": 0,
-        "cerereSpeciala": false,
-        "dataIesireUnix": 0,
-        "dataIntrareUnix": 0,
-        "idAngajat": 0,
-        "inAsteptare": true,
-        "masina": {
-            "anFabricare": 0,
-            "discount": 0,
-            "isDisel": false,
-            "numarKm": 0,
-            "numarLocuri": 0,
-            "tip": "standard",
-            "tonaj": 0,
-            "transmisie": false
-        }
-    },
-    {
         "bacsis": 16.5,
         "cerereSpeciala": true,
         "dataIesireUnix": 1717519993,

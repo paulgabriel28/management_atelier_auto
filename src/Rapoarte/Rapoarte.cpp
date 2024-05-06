@@ -62,7 +62,7 @@ void comenxiMaxZi(const string *data) {
     }
 
     sendInfo("Angajatul cu cele mai multe comenzi in ziua respectiva este:");
-    angajati[pozMax]->afisareAngajat();
+    sendInfo("ID: " + to_string(pozMax) + " -> " + angajati[pozMax]->getNume() + " " + angajati[pozMax]->getPrenume() + " cu un numar de " + to_string(vecAngajati[pozMax].nrComenzi) + " comenzi.");
     delete [] angajati;
 }
 
@@ -128,12 +128,14 @@ void top3maxPolita() {
     unsigned int dim = 0;
     citesteAngajatiJSON(angajati, dim);
 
-    sendInfo("Top 3 angajati cu cea mai mare valoare a politelor de asigurare:");
     if(vecAngajati[0].sumaPolitaMax == 0) {
         sendError("Nu exista angajati cu polita de asigurare.");
         return;
     }
     for(unsigned int i = 0; i < 3; i++) {
+        if(vecAngajati[i].sumaPolitaMax == 0) {
+            continue;
+        }
         sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(vecAngajati[i].poz) + "] - " + angajati[vecAngajati[i].poz]->getNume() + " " + angajati[vecAngajati[i].poz]->getPrenume());
     }
 

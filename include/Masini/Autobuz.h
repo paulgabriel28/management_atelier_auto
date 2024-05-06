@@ -10,4 +10,5 @@ class Autobuz final: public Masina {
         Autobuz(const double &, const unsigned int &, const bool &, const unsigned int &, const unsigned int &);
 
         unsigned int getNumarLocuri() const;
+        double getPolita() const override;
 };

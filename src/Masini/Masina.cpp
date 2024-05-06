@@ -28,15 +28,6 @@ double Masina::getNumarKm() const {
     return numarKm;
 }
 
-double Masina::getPolita() const {
-    double politaAsigurare = double(getVechime() * 100 + ((isDisel == 1) ? 500 : 0) + ((numarKm > 200000) ? 500 : 0));
-
-    if(discount) {
-        return politaAsigurare - (politaAsigurare * discount);
-    }
-    return politaAsigurare;
-}
-
 unsigned int Masina::getVechime() const {
     time_t timpPrezent = time(nullptr);
     tm* structTmPrezent = localtime(&timpPrezent);

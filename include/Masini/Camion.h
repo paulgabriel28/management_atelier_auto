@@ -10,4 +10,5 @@ class Camion final: public Masina {
         Camion(const double &, const unsigned int &, const bool &, const unsigned int &, const double &);
 
         double getTonaj() const;
+        double getPolita() const override;
 };
