@@ -140,7 +140,7 @@ short nouaMasinaInAtelier() {
                 }
             }
             else if(dorinta == 2) {
-                vec[preferintaAngajat]->addMasiniInAsteptare(tipMasina, getCurrentTime());
+                vec[preferintaAngajat]->addMasiniInAsteptare(masina, getCurrentTime());
                 double bacsis = masina->getPolita() * 0.01;
                 intrareInAtelier(vec[preferintaAngajat], masina, 0, true, true, bacsis);
 
@@ -166,9 +166,10 @@ short nouaMasinaInAtelier() {
                 cin >> zile;
                 long long timeUnix = ZileToUnix(zile);
                 vec[i]->setUnixIntrariAtelier((int)loc, timeUnix);
-                
+                sendInfo("Masina a fost adaugata cu succes la angajatul cu ID-ul " + to_string(i) + " si va fi scoasa din atelier in " + to_string(zile) + " zile");
                 double bacsis = masina->getPolita() * 0.01;
-                intrareInAtelier(vec[preferintaAngajat], masina, timeUnix, false, false, bacsis);
+                
+                intrareInAtelier(vec[i], masina, timeUnix, false, false, bacsis);
 
                 sendSuccess("Masina a fost adaugata cu succes la angajatul cu ID-ul " + i);
                 salveazaAngajatiToJson(vec, nrAngajati);

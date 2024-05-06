@@ -1,27 +1,9 @@
 [
     {
-        "bacsis": 0,
-        "cerereSpeciala": false,
-        "dataIesireUnix": 0,
-        "dataIntrareUnix": 0,
-        "idAngajat": 0,
-        "inAsteptare": true,
-        "masina": {
-            "anFabricare": 0,
-            "discount": 0,
-            "isDisel": false,
-            "numarKm": 0,
-            "numarLocuri": 0,
-            "tip": "standard",
-            "tonaj": 0,
-            "transmisie": false
-        }
-    },
-    {
         "bacsis": 16.5,
         "cerereSpeciala": true,
         "dataIesireUnix": 1717519993,
-        "dataIntrareUnix": 1714928002,
+        "dataIntrareUnix": 1714973372,
         "idAngajat": 1,
         "inAsteptare": false,
         "masina": {
@@ -29,9 +11,63 @@
             "discount": 0.05,
             "isDisel": true,
             "numarKm": 5000.0,
-            "numarLocuri": 0,
+            "nrLocuri": 0,
             "tip": "standard",
             "tonaj": 0.0,
+            "transmisie": false
+        }
+    },
+    {
+        "bacsis": 12,
+        "cerereSpeciala": false,
+        "dataIesireUnix": 1717143959,
+        "dataIntrareUnix": 1714983959,
+        "idAngajat": 0,
+        "inAsteptare": false,
+        "masina": {
+            "anFabricare": 2022,
+            "discount": 0.1,
+            "isDisel": true,
+            "numarKm": 30153.0,
+            "nrLocuri": 18,
+            "tip": "autobuz",
+            "tonaj": 0.0,
+            "transmisie": false
+        }
+    },
+    {
+        "bacsis": 12,
+        "cerereSpeciala": true,
+        "dataIesireUnix": 0,
+        "dataIntrareUnix": 1714984895,
+        "idAngajat": 0,
+        "inAsteptare": true,
+        "masina": {
+            "anFabricare": 2022,
+            "discount": 0.1,
+            "isDisel": true,
+            "numarKm": 12000.0,
+            "nrLocuri": 19,
+            "tip": "autobuz",
+            "tonaj": 0.0,
+            "transmisie": false
+        }
+    },
+    {
+        "bacsis": 5,
+        "cerereSpeciala": true,
+        "dataIesireUnix": 1716712998,
+        "dataIntrareUnix": 1714984998,
+        "idAngajat": 3,
+        "inAsteptare": false,
+        "masina": {
+            "anFabricare": 2021,
+            "discount": 0.15,
+            "isDisel": true,
+            "numarKm": 30500.0,
+            "nrLocuri": 0,
+            "tip": "camion",
+            "tonaj": 6.0,
             "transmisie": false
         }
     }

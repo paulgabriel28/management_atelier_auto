@@ -21,7 +21,7 @@ class Masina {
         unsigned int getVechime() const;
 
         static unsigned int getID();
-        double virtual getPolita() const;
+        virtual double getPolita() = 0;
         unsigned int getAnFabricare() const;
         double getNumarKm() const;
         bool getIsDisel() const;

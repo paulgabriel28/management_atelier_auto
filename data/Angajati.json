@@ -11,13 +11,18 @@
             "zi": "2000"
         },
         "id": 0,
-        "masiniInAsteptare": [],
-        "nrMasiniInAsteptare": 0,
+        "masiniInAsteptare": [
+            {
+                "tip": "autobuz",
+                "unixIntrare": 1714984895
+            }
+        ],
+        "nrMasiniInAsteptare": 1,
         "nume": "Marius",
         "prenume": "Andrei",
         "type": "asistent",
         "unixOcupat": {
-            "autobuz": 0,
+            "autobuz": 1717143959,
             "camion": 0,
             "masini": {
                 "1": 0,
@@ -48,6 +53,87 @@
             "camion": 0,
             "masini": {
                 "1": 1717519993,
+                "2": 0,
+                "3": 0
+            }
+        }
+    },
+    "2": {
+        "dataAngajare": {
+            "an": "2022",
+            "luna": "03",
+            "zi": "01"
+        },
+        "dataNastere": {
+            "an": "1995",
+            "luna": "05",
+            "zi": "12"
+        },
+        "id": 2,
+        "masiniInAsteptare": [],
+        "nrMasiniInAsteptare": 0,
+        "nume": "Popescu",
+        "prenume": "Marin",
+        "type": "mecanic",
+        "unixOcupat": {
+            "autobuz": 0,
+            "camion": 0,
+            "masini": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+            }
+        }
+    },
+    "3": {
+        "dataAngajare": {
+            "an": "2024",
+            "luna": "05",
+            "zi": "06"
+        },
+        "dataNastere": {
+            "an": "2001",
+            "luna": "06",
+            "zi": "12"
+        },
+        "id": 3,
+        "masiniInAsteptare": [],
+        "nrMasiniInAsteptare": 0,
+        "nume": "Marinescu",
+        "prenume": "Marcel",
+        "type": "asistent",
+        "unixOcupat": {
+            "autobuz": 0,
+            "camion": 1716712998,
+            "masini": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+            }
+        }
+    },
+    "4": {
+        "dataAngajare": {
+            "an": "2024",
+            "luna": "04",
+            "zi": "28"
+        },
+        "dataNastere": {
+            "an": "2000",
+            "luna": "12",
+            "zi": "02"
+        },
+        "id": 4,
+        "masiniInAsteptare": [],
+        "nrMasiniInAsteptare": 0,
+        "nume": "Dumitru",
+        "prenume": "Andrei",
+        "type": "director",
+        "unixOcupat": {
+            "autobuz": 0,
+            "camion": 0,
+            "masini": {
+                "1": 0,
                 "2": 0,
                 "3": 0
             }
