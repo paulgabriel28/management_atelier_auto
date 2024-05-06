@@ -61,7 +61,7 @@ void comenxiMaxZi(const string *data) {
     }
 
     sendInfo("Angajatul cu cele mai multe comenzi in ziua respectiva este:");
-    sendInfo("ID: " + to_string(pozMax) + " -> " + angajati[pozMax]->getNume() + " " + angajati[pozMax]->getPrenume() + " cu un numar de " + to_string(vecAngajati[pozMax].nrComenzi) + " comenzi.");
+    sendInfo("ID: " + to_string(pozMax) + " -> " + angajati[pozMax]->getNume() + " " + angajati[pozMax]->getPrenume() + " cu un numar de " + to_string(vecAngajati[pozMax].nrComenzi) + " comenzi [+ " + to_string(vecAngajati[pozMax].nrComenziAsteptare) + " comenzi in asteptare]");
     delete [] angajati;
 }
 
@@ -143,9 +143,9 @@ void top3maxPolita() {
 
 bool isVechi5Ani(const unsigned int &anFabricare) {
     time_t now = time(0);
-    tm *ltm = localtime(&now);
+    tm *timp = localtime(&now);
 
-    if(ltm->tm_year - anFabricare > 5) {
+    if(timp->tm_year + 1900 - anFabricare > 5) {
         return true;
     }
 
@@ -160,7 +160,7 @@ void top3maxAutobuze() {
     citesteAngajatiJSON(angajati, dim);
 
     struct {
-        unsigned int nrAutobuze = 0;
+        int nrAutobuze = 0;
     } vecAngajati[dim];
 
     for(size_t i = 0; i < intrariAtelier.size(); i++) {
@@ -168,31 +168,31 @@ void top3maxAutobuze() {
             continue;
         }
 
-        if(intrariAtelier[i]["masina"]["tip"] != "Autobuz") {
+        if(intrariAtelier[i]["masina"]["tip"] != "autobuz") {
             continue;
         }
 
         unsigned int idAngajat = intrariAtelier[i]["idAngajat"];
-        if(!isVechi5Ani(intrariAtelier[i]["masina"]["anFabricare"])) {
+        if(isVechi5Ani(intrariAtelier[i]["masina"]["anFabricare"])) {
             continue;
         }
         vecAngajati[idAngajat].nrAutobuze++;
     }
 
-    int pozMax[3] = {0};
+    int pozMax[3] = {-1, -1, -1};
     for(unsigned int i = 0; i < dim; i++) {
         if(vecAngajati[i].nrAutobuze == 0) {
             continue;
         }
 
-        if(vecAngajati[i].nrAutobuze > vecAngajati[pozMax[0]].nrAutobuze) {
+        if(vecAngajati[i].nrAutobuze < vecAngajati[pozMax[0]].nrAutobuze) {
             pozMax[2] = pozMax[1];
             pozMax[1] = pozMax[0];
             pozMax[0] = i;
-        } else if(vecAngajati[i].nrAutobuze > vecAngajati[pozMax[1]].nrAutobuze) {
+        } else if(vecAngajati[i].nrAutobuze < vecAngajati[pozMax[1]].nrAutobuze) {
             pozMax[2] = pozMax[1];
             pozMax[1] = i;
-        } else if(vecAngajati[i].nrAutobuze > vecAngajati[pozMax[2]].nrAutobuze) {
+        } else if(vecAngajati[i].nrAutobuze < vecAngajati[pozMax[2]].nrAutobuze) {
             pozMax[2] = i;
         }
     }
@@ -202,8 +202,17 @@ void top3maxAutobuze() {
         delete [] angajati;
         return;
     }
+    
     for(unsigned int i = 0; i < 3; i++) {
-        sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(pozMax[i]) + "]" + angajati[pozMax[i]]->getNume() + " " + angajati[pozMax[i]]->getPrenume());
+        if(pozMax[i] == -1) {
+            continue;
+        }
+
+        if(vecAngajati[pozMax[i]].nrAutobuze == 0) {
+            continue;
+        }
+
+        sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(pozMax[i]) + "] " + angajati[pozMax[i]]->getNume() + " " + angajati[pozMax[i]]->getPrenume());
     }
 
     delete [] angajati;
@@ -224,20 +233,20 @@ void top3CereriSpeciale() {
         }
     }
 
-    int pozMax[3] = {0};
+    int pozMax[3] = {-1, -1, -1};
     for(unsigned int i = 0; i < dim; i++) {
         if(vecAngajati[i] == 0) {
             continue;
         }
 
-        if(vecAngajati[i] > vecAngajati[pozMax[0]]) {
+        if(vecAngajati[i] < vecAngajati[pozMax[0]]) {
             pozMax[2] = pozMax[1];
             pozMax[1] = pozMax[0];
             pozMax[0] = i;
-        } else if(vecAngajati[i] > vecAngajati[pozMax[1]]) {
+        } else if(vecAngajati[i] < vecAngajati[pozMax[1]]) {
             pozMax[2] = pozMax[1];
             pozMax[1] = i;
-        } else if(vecAngajati[i] > vecAngajati[pozMax[2]]) {
+        } else if(vecAngajati[i] < vecAngajati[pozMax[2]]) {
             pozMax[2] = i;
         }
     }
@@ -250,9 +259,14 @@ void top3CereriSpeciale() {
         return;
     }
     for(unsigned int i = 0; i < 3; i++) {
+        if(pozMax[i] == -1) {
+            continue;
+        }
+
         if(vecAngajati[pozMax[i]] == 0) {
             continue;
         }
+
         sendInfo("Locul " + to_string(i + 1) + ": [ID: " + to_string(pozMax[i]) + "] " + angajati[pozMax[i]]->getNume() + " " + angajati[pozMax[i]]->getPrenume());
     }
 }

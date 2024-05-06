@@ -77,7 +77,6 @@ bool correctOption(const unsigned int &option, const MeniuOptions &meniu) {
 }
 
 void Meniu(const MeniuOptions &meniu) {
-    clearChat();
     switch (meniu)
     {
         case MENIU_NULL: {
@@ -91,6 +90,7 @@ void Meniu(const MeniuOptions &meniu) {
         }
 
         case NOUA_OPTIUNE: {
+            sendSeparator();
             sendInfo("Actiunea a fost efectuata cu succes!");
             sendInfo("Doresti sa faci o noua actiune?");
             sendQuestion("Y - Da \t|\t N - Nu");
@@ -99,7 +99,7 @@ void Meniu(const MeniuOptions &meniu) {
                 cin >> option;
                 if(option != 'Y' && option != 'y' && option != 'N' && option != 'n'){
                     sendError("Optiunea aleasa nu este corecta!");
-                    sendQuestion("1 - Da \t|\t 0 - Nu");
+                    sendQuestion("Y - Da \t|\t N - Nu");
                 }
             } while(option != 'Y' && option != 'y' && option != 'N' && option != 'n');
 
@@ -114,6 +114,7 @@ void Meniu(const MeniuOptions &meniu) {
         }
 
         case MENIU_PRINCIPAL: {
+            clearChat();
             unsigned int option;
             do {
                 meniuPrincipal();
@@ -151,6 +152,7 @@ void Meniu(const MeniuOptions &meniu) {
         }
 
         case MENIU_ADMIN: {
+            clearChat();
             unsigned int option;
             do {
                 meniuAdmin();
@@ -293,40 +295,47 @@ void Meniu(const MeniuOptions &meniu) {
                         string data[3];
                         sendInfo("Introdu data pentru care vrei sa vezi angajatul cu cele mai multe comenzi!");
                         citesteValoare("Data dorita [format: zz ll aaaa]");
-                        for(int i = 0; i < 3; i++) {
-                            cin >> data[i];
-                        }
+                        do {
+                            for(int i = 0; i < 3; i++) {
+                                cin >> data[i];
+                            }
+                            if(!isPresent(data)) {
+                                sendError("Data introdusa nu este corecta!");
+                                citesteValoare("Data dorita [format: zz ll aaaa]");
+                            }
+                        } while(!isPresent(data));
+
                         comenxiMaxZi(data);
 
-                        // Meniu(NOUA_OPTIUNE);
+                        Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 3: {
                         sendInfo("Top 3 angajati cu cea mai mare valoare a politelor de asigurare");
                         top3maxPolita();
-                        // Meniu(NOUA_OPTIUNE);
+                        Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 4: {
                         sendInfo("Top 3 angajati care au reparat cele mai multe autobuze noi");
                         top3maxAutobuze();
-                        // Meniu(NOUA_OPTIUNE);
+                        Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 5: {
                         sendInfo("Top 3 angajati cu cei mai multe cereri speciale");
                         top3CereriSpeciale();
-                        // Meniu(NOUA_OPTIUNE);
+                        Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
                     case 6: {
                         sendInfo("Bacsisul fiecarui angajat");
                         afisareBacsis();
-                        // Meniu(NOUA_OPTIUNE);
+                        Meniu(NOUA_OPTIUNE);
                         break;
                     }
 
@@ -341,6 +350,9 @@ void Meniu(const MeniuOptions &meniu) {
             } while(!correctOption(option, MENIU_ATELIER));
         }
 
+        case MENIU_SETARI: {
+            
+        }
         default:
             break;
     }

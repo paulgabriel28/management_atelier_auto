@@ -155,7 +155,7 @@ void intrareInAtelier(const Angajat *angajat, const Masina *masina, const long l
             break;
     }
 
-    json["masina"]["numarLocuri"] = numarLocuri;
+    json["masina"]["nrLocuri"] = numarLocuri;
     json["masina"]["tonaj"] = tonaj;
     json["masina"]["transmisie"] = (transmisie == transmisieNULL ? false : (transmisie == AUTOMAT ? true : false));
 

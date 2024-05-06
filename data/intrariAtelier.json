@@ -11,7 +11,7 @@
             "discount": 0.05,
             "isDisel": true,
             "numarKm": 5000.0,
-            "numarLocuri": 0,
+            "nrLocuri": 0,
             "tip": "standard",
             "tonaj": 0.0,
             "transmisie": false
@@ -29,7 +29,7 @@
             "discount": 0.1,
             "isDisel": true,
             "numarKm": 30153.0,
-            "numarLocuri": 18,
+            "nrLocuri": 18,
             "tip": "autobuz",
             "tonaj": 0.0,
             "transmisie": false
@@ -47,9 +47,27 @@
             "discount": 0.1,
             "isDisel": true,
             "numarKm": 12000.0,
-            "numarLocuri": 19,
+            "nrLocuri": 19,
             "tip": "autobuz",
             "tonaj": 0.0,
+            "transmisie": false
+        }
+    },
+    {
+        "bacsis": 5,
+        "cerereSpeciala": true,
+        "dataIesireUnix": 1716712998,
+        "dataIntrareUnix": 1714984998,
+        "idAngajat": 3,
+        "inAsteptare": false,
+        "masina": {
+            "anFabricare": 2021,
+            "discount": 0.15,
+            "isDisel": true,
+            "numarKm": 30500.0,
+            "nrLocuri": 0,
+            "tip": "camion",
+            "tonaj": 6.0,
             "transmisie": false
         }
     }
