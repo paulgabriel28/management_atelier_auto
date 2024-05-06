@@ -3,12 +3,12 @@
 #include <string>
 #include <iostream> 
 
-#include "../enum.h"
+#include "../Masini/Masina.h"
 
 using namespace std;
 
 struct masinaInAsteptare {
-    typeMasini tip;
+    string tip;
     long long unixIntrare;
 };
 
@@ -54,6 +54,6 @@ class Angajat {
         auto getUnixIntrariAtelier(const unsigned int &poz) const -> long long;
 
         unsigned int getNrMasiniInAsteptare() const;
-        void addMasiniInAsteptare(const typeMasini &, const long long &);
+        void addMasiniInAsteptare(const Masina *, const long long &);
         masinaInAsteptare* getMasiniInAsteptare() const;
 };

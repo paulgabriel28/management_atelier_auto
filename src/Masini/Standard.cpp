@@ -14,8 +14,8 @@ typeTransmisie Standard::getTransmisie() const {
     return transmisie;
 }
 
-double Standard::getPolita() const {
-    double politaAsigurare = double(getVechime() * 100 + ((isDisel == 1) ? 500 : 0) + ((numarKm > 200000) ? 500 : 0));
+double Standard::getPolita() {
+    double politaAsigurare = double(Masina::getVechime() * 100 + ((isDisel == 1) ? 500 : 0) + ((numarKm > 200000) ? 500 : 0));
 
     if(discount) {
         return politaAsigurare - (politaAsigurare * discount);

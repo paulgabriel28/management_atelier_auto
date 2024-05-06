@@ -16,5 +16,41 @@
             "tonaj": 0.0,
             "transmisie": false
         }
+    },
+    {
+        "bacsis": 12,
+        "cerereSpeciala": false,
+        "dataIesireUnix": 1717143959,
+        "dataIntrareUnix": 1714983959,
+        "idAngajat": 0,
+        "inAsteptare": false,
+        "masina": {
+            "anFabricare": 2022,
+            "discount": 0.1,
+            "isDisel": true,
+            "numarKm": 30153.0,
+            "numarLocuri": 18,
+            "tip": "autobuz",
+            "tonaj": 0.0,
+            "transmisie": false
+        }
+    },
+    {
+        "bacsis": 12,
+        "cerereSpeciala": true,
+        "dataIesireUnix": 0,
+        "dataIntrareUnix": 1714984895,
+        "idAngajat": 0,
+        "inAsteptare": true,
+        "masina": {
+            "anFabricare": 2022,
+            "discount": 0.1,
+            "isDisel": true,
+            "numarKm": 12000.0,
+            "numarLocuri": 19,
+            "tip": "autobuz",
+            "tonaj": 0.0,
+            "transmisie": false
+        }
     }
 ]

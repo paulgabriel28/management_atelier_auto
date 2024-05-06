@@ -1,4 +1,6 @@
 #include "../../include/Angajati/Angajat.h"
+
+#include "../../include/enum.h"
 #include "../../include/utile/functions.h"
 #include "../../include/utile/utileAngajati.h"
 #include "../../include/enum.h"
@@ -6,6 +8,7 @@
 #include "../../include/Angajati/Director.h"
 #include "../../include/Angajati/Mecanic.h"
 #include "../../include/Angajati/Asistent.h"
+#include "../../include/utile/utileMasini.h"
 
 unsigned int Angajat::ID = 0;
 
@@ -413,7 +416,7 @@ unsigned int Angajat::getNrMasiniInAsteptare() const {
     return nrMasiniInAsteptare;
 }
 
-void Angajat::addMasiniInAsteptare(const typeMasini &tip, const long long &unix) {
+void Angajat::addMasiniInAsteptare(const Masina *masina, const long long &unix) {
     nrMasiniInAsteptare++;
     
     masinaInAsteptare *copyMasini = new masinaInAsteptare[nrMasiniInAsteptare];
@@ -429,7 +432,7 @@ void Angajat::addMasiniInAsteptare(const typeMasini &tip, const long long &unix)
     }
     delete [] copyMasini;
 
-    masiniInAsteptare[nrMasiniInAsteptare - 1].tip = tip;
+    masiniInAsteptare[nrMasiniInAsteptare - 1].tip = getTypeMasina(masina);
     masiniInAsteptare[nrMasiniInAsteptare - 1].unixIntrare = unix;
 }
 

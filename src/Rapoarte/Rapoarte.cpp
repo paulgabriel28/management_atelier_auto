@@ -32,7 +32,6 @@ void comenxiMaxZi(const string *data) {
         if(unixInDateString(intrariAtelier[i]["dataIntrareUnix"], data)) {
             if(intrariAtelier[i]["inAsteptare"]) {
                 vecAngajati[(int)intrariAtelier[i]["idAngajat"]].nrComenziAsteptare++;
-                cout <<"barosan\n";
             } else {
                 vecAngajati[(int)intrariAtelier[i]["idAngajat"]].nrComenzi++;
             }            

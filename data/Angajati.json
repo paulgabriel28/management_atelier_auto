@@ -11,13 +11,18 @@
             "zi": "2000"
         },
         "id": 0,
-        "masiniInAsteptare": [],
-        "nrMasiniInAsteptare": 0,
+        "masiniInAsteptare": [
+            {
+                "tip": "autobuz",
+                "unixIntrare": 1714984895
+            }
+        ],
+        "nrMasiniInAsteptare": 1,
         "nume": "Marius",
         "prenume": "Andrei",
         "type": "asistent",
         "unixOcupat": {
-            "autobuz": 0,
+            "autobuz": 1717143959,
             "camion": 0,
             "masini": {
                 "1": 0,

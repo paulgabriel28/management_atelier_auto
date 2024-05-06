@@ -107,7 +107,7 @@ void salveazaAngajatiToJson(Angajat **&vec, unsigned int &dim) {
 
 void intrareInAtelier(const Angajat *angajat, const Masina *masina, const long long &iesireService, const bool &cerereSpeciala, const bool &inAsteptare, const unsigned short int &bacsis) {
     fstream file("data/intrariAtelier.json", ios::in | ios::out);
-
+    angajat->afisareAngajat();
     if (!file.is_open()) {
         sendError("Nu s-a putut deschide fisierul JSON pentru citire/scriere.");
         return;
@@ -115,7 +115,7 @@ void intrareInAtelier(const Angajat *angajat, const Masina *masina, const long l
 
     json dateExistent;
     file >> dateExistent;
-
+    
     json json;
     json["idAngajat"] = angajat->getIdAngajat();
     json["dataIntrareUnix"] = getCurrentTime();
@@ -157,7 +157,7 @@ void intrareInAtelier(const Angajat *angajat, const Masina *masina, const long l
 
     json["masina"]["numarLocuri"] = numarLocuri;
     json["masina"]["tonaj"] = tonaj;
-    json["masina"]["transmisie"] = (transmisie == transmisieNULL ? -1 : (transmisie == AUTOMAT ? 1 : 0));
+    json["masina"]["transmisie"] = (transmisie == transmisieNULL ? false : (transmisie == AUTOMAT ? true : false));
 
     
     dateExistent.push_back(json);

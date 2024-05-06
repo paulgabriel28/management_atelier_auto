@@ -14,8 +14,8 @@ unsigned int Autobuz::getNumarLocuri() const {
     return numarLocuri;
 }
 
-double Autobuz::getPolita() const {
-    double politaAsigurare = double(getVechime() * 200 + ((isDisel == 1) ? 1000 : 0) + ((numarKm > 200000) ? 1000 : (numarKm > 100000) ? 500 : 0));
+double Autobuz::getPolita() {
+    double politaAsigurare = double(Masina::getVechime() * 200 + ((isDisel == 1) ? 1000 : 0) + ((numarKm > 200000) ? 1000 : (numarKm > 100000) ? 500 : 0));
     
     if(discount) {
         return politaAsigurare - (politaAsigurare * discount);

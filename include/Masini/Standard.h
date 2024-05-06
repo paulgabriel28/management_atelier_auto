@@ -11,5 +11,5 @@ class Standard final: public Masina {
         Standard(const double &, const unsigned int &, const bool &, const unsigned int &, const typeTransmisie &);
 
         typeTransmisie getTransmisie() const;
-        double getPolita() const override;
+        double getPolita() override;
 };

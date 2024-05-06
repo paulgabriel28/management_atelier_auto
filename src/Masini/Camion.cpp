@@ -14,8 +14,8 @@ double Camion::getTonaj() const {
     return tonaj;
 }
 
-double Camion::getPolita() const {
-    double politaAsigurare = double(getVechime() * 300 + (numarKm > 800000) ? 700 : 0);
+double Camion::getPolita() {
+    double politaAsigurare = double(Masina::getVechime() * 300 + (numarKm > 800000) ? 700 : 0);
     
     if(discount) {
         return politaAsigurare - (politaAsigurare * discount);
