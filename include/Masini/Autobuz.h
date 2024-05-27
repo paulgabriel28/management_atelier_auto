@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _AUTOBUZ
+#define _AUTOBUZ
 
 #include "Masina.h"
 
@@ -12,3 +13,5 @@ class Autobuz final: public Masina {
         unsigned int getNumarLocuri() const;
         double getPolita() override;
 };
+
+#endif

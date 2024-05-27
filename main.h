@@ -1,3 +1,6 @@
+#ifndef _MAIN
+#define _MAIN
+
 // MARK: MAIN
 #include <iostream>
 #include <string>
@@ -18,3 +21,5 @@
 using json = nlohmann::json;
 
 using namespace std;
+
+#endif

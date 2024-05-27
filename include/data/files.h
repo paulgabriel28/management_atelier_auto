@@ -1,3 +1,6 @@
+#ifndef _FILES
+#define _FILES
+
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <string>
@@ -25,3 +28,5 @@ void salveazaAngajatiToJson(Angajat **&, unsigned int &);
 
 void intrareInAtelier(const Angajat *, const Masina *, const long long &, const bool &, const bool &, const unsigned short int &);
 json citesteIntrariAtelier();
+
+#endif

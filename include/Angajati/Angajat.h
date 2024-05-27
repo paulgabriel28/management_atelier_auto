@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _ANGAJAT
+#define _ANGAJAT
 
 #include <string>
 #include <iostream> 
@@ -57,3 +58,5 @@ class Angajat {
         void addMasiniInAsteptare(const Masina *, const long long &);
         masinaInAsteptare* getMasiniInAsteptare() const;
 };
+
+#endif

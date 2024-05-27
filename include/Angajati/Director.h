@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _DIRECTOR
+#define _DIRECTOR
 
 #include "Angajat.h"
 #include <string>
@@ -14,3 +15,5 @@ class Director final: virtual public Angajat {
         void afisareAngajat() const;
         void editAngajat();
 };
+
+#endif

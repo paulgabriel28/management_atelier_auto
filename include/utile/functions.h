@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _FUNCTIONS
+#define _FUNCTIONS
 
 #include "../Angajati/Angajat.h"
 #include <iostream>
@@ -26,3 +27,5 @@ void clearChat();
 void elibereazaMemorie(Angajat **&, const unsigned int &);
 
 long long getCurrentTime();
+
+#endif

@@ -250,8 +250,6 @@ void top3CereriSpeciale() {
             pozMax[2] = i;
         }
     }
-
-    sendInfo("Top 3 angajati care au cele mai multe cereri speciale:");
     
     if(vecAngajati[pozMax[0]] == 0) {
         sendError("Nu exista date care sa corespunda cerintelor.");

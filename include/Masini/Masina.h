@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _MASINA
+#define _MASINA
+
 #include <string>
 #include <ctime>
 
@@ -27,3 +29,5 @@ class Masina {
         bool getIsDisel() const;
         double getDiscount() const;
 };
+
+#endif

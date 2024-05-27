@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _CAMION
+#define _CAMION
 
 #include "Masina.h"
 
@@ -12,3 +13,5 @@ class Camion final: public Masina {
         double getTonaj() const;
         double getPolita() override;
 };
+
+#endif

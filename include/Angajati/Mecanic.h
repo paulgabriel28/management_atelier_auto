@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MECANIC
+#define _MECANIC
 
 #include "Angajat.h"
 #include <string>
@@ -14,3 +15,5 @@ class Mecanic final: virtual public Angajat {
         void afisareAngajat() const;
         void editAngajat();
 };
+
+#endif

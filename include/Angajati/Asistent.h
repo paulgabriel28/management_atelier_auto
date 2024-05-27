@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _ASISTENT
+#define _ASISTENT
 
 #include "Angajat.h"
 #include <string>
@@ -14,3 +15,5 @@ class Asistent final: virtual public Angajat {
         void afisareAngajat() const;
         void editAngajat();
 };
+
+#endif

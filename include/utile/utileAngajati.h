@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _UTILE_ANGAJATI
+#define _UTILE_ANGAJATI
 
 #include <iostream>
 #include <cstring>
@@ -40,3 +41,5 @@ string getTypeAngajat(const Angajat *);
 void copyVectorAngajat(Angajat **&, Angajat **, const unsigned int &);
 
 bool existaIdAngajat(Angajat *const *, const unsigned int &, const int &);
+
+#endif

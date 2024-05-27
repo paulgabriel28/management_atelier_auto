@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _STANDARD
+#define _STANDARD
 
 #include "Masina.h"
 #include "../enum.h"
@@ -13,3 +14,5 @@ class Standard final: public Masina {
         typeTransmisie getTransmisie() const;
         double getPolita() override;
 };
+
+#endif

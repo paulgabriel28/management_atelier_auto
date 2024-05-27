@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _FUNCTII_ATELIER
+#define _FUNCTII_ATELIER
 
 #include <iostream>
 #include <string>
@@ -18,3 +19,5 @@
 
 
 short nouaMasinaInAtelier();
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _ENUM
+#define _ENUM
 
 // MARK: enum
 enum typeAngajat {
@@ -45,3 +46,5 @@ enum typeTransmisie {
     MANUAL = 0,
     AUTOMAT
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MENIU
+#define _MENIU
 
 #include "../utile/functions.h"
 #include "../data/files.h"
@@ -34,3 +35,5 @@ void meniuAtelier();
 bool correctOption(const unsigned int &, const MeniuOptions &);
 
 void Meniu(const MeniuOptions &);
+
+#endif

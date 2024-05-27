@@ -158,12 +158,12 @@ void Meniu(const MeniuOptions &meniu) {
                 meniuAdmin();
                 citesteValoare("Optiune"); 
                 cin >> option;
-
                 if(correctOption(option, MENIU_ADMIN)) {
                     switch (option)
                     {
                         case 1: {
                             Meniu(MENIU_ADMIN_ANGAJATI);
+                            cout << "OPTION = " << option << endl;
                             break;
                         }
 
@@ -283,69 +283,74 @@ void Meniu(const MeniuOptions &meniu) {
                 citesteValoare("Optiune");
                 cin >> option;
 
-                switch (option)
-                {
-                    case 1: {
-                        nouaMasinaInAtelier();
-                        Meniu(NOUA_OPTIUNE);
-                        break;
+                if(correctOption(option, MENIU_ATELIER)) {
+                    switch (option)
+                    {
+                        case 1: {
+                            nouaMasinaInAtelier();
+                            Meniu(NOUA_OPTIUNE);
+                            break;
+                        }
+
+                        case 2: {
+                            string data[3];
+                            sendInfo("Introdu data pentru care vrei sa vezi angajatul cu cele mai multe comenzi!");
+                            citesteValoare("Data dorita [format: zz ll aaaa]");
+                            do {
+                                for(int i = 0; i < 3; i++) {
+                                    cin >> data[i];
+                                }
+                                if(!isPresent(data)) {
+                                    sendError("Data introdusa nu este corecta!");
+                                    citesteValoare("Data dorita [format: zz ll aaaa]");
+                                }
+                            } while(!isPresent(data));
+
+                            comenxiMaxZi(data);
+
+                            Meniu(NOUA_OPTIUNE);
+                            break;
+                        }
+
+                        case 3: {
+                            sendInfo("Top 3 angajati cu cea mai mare valoare a politelor de asigurare");
+                            top3maxPolita();
+                            Meniu(NOUA_OPTIUNE);
+                            break;
+                        }
+
+                        case 4: {
+                            sendInfo("Top 3 angajati care au reparat cele mai multe autobuze noi");
+                            top3maxAutobuze();
+                            Meniu(NOUA_OPTIUNE);
+                            break;
+                        }
+
+                        case 5: {
+                            sendInfo("Top 3 angajati cu cei mai multe cereri speciale");
+                            top3CereriSpeciale();
+                            Meniu(NOUA_OPTIUNE);
+                            break;
+                        }
+
+                        case 6: {
+                            sendInfo("Bacsisul fiecarui angajat");
+                            afisareBacsis();
+                            Meniu(NOUA_OPTIUNE);
+                            break;
+                        }
+
+                        case 0: {
+                            Meniu(MENIU_PRINCIPAL);
+                            break;
+                        }
+                        
+                        default:
+                            break;
                     }
-
-                    case 2: {
-                        string data[3];
-                        sendInfo("Introdu data pentru care vrei sa vezi angajatul cu cele mai multe comenzi!");
-                        citesteValoare("Data dorita [format: zz ll aaaa]");
-                        do {
-                            for(int i = 0; i < 3; i++) {
-                                cin >> data[i];
-                            }
-                            if(!isPresent(data)) {
-                                sendError("Data introdusa nu este corecta!");
-                                citesteValoare("Data dorita [format: zz ll aaaa]");
-                            }
-                        } while(!isPresent(data));
-
-                        comenxiMaxZi(data);
-
-                        Meniu(NOUA_OPTIUNE);
-                        break;
-                    }
-
-                    case 3: {
-                        sendInfo("Top 3 angajati cu cea mai mare valoare a politelor de asigurare");
-                        top3maxPolita();
-                        Meniu(NOUA_OPTIUNE);
-                        break;
-                    }
-
-                    case 4: {
-                        sendInfo("Top 3 angajati care au reparat cele mai multe autobuze noi");
-                        top3maxAutobuze();
-                        Meniu(NOUA_OPTIUNE);
-                        break;
-                    }
-
-                    case 5: {
-                        sendInfo("Top 3 angajati cu cei mai multe cereri speciale");
-                        top3CereriSpeciale();
-                        Meniu(NOUA_OPTIUNE);
-                        break;
-                    }
-
-                    case 6: {
-                        sendInfo("Bacsisul fiecarui angajat");
-                        afisareBacsis();
-                        Meniu(NOUA_OPTIUNE);
-                        break;
-                    }
-
-                    case 0: {
-                        Meniu(MENIU_PRINCIPAL);
-                        break;
-                    }
-                    
-                    default:
-                        break;
+                } else {
+                    clearChat();
+                    sendError("Optiunea aleasa nu este corecta!");
                 }
             } while(!correctOption(option, MENIU_ATELIER));
         }

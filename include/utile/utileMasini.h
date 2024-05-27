@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _UTILE_MASINI
+#define _UTILE_MASINI
 
 #include <string>
 #include <ctime>
@@ -20,3 +21,5 @@ typeMasini stringToTypeMasina(const string &);
 Masina* citesteMasina(const string &);
 
 string getTypeMasina(const Masina *);
+
+#endif
