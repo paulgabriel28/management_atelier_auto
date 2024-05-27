@@ -16,6 +16,8 @@
 #include "include/utile/functions.h"
 #include "include/Meniu/Meniu.h"
 
+#include "include/data/pin.h"
+
 // MARK: LIB
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;

@@ -136,7 +136,7 @@ void Meniu(const MeniuOptions &meniu) {
 
                         case 0: {
                             clearChat();
-                            sendInfo("Programul se inchide...");
+                            sendInfo("Ai parasit meniul principal!");
                             break;
                         }
 

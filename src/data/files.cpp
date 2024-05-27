@@ -181,3 +181,19 @@ json citesteIntrariAtelier() {
     
     return dateExistent;
 }
+
+json getSettings() {
+    fstream file("data/settings.json", ios::in);
+
+    
+    if(!file.is_open()) {
+        sendError("Nu s-a putut deschide fisierul JSON 'settings.json' pentru citire");
+        return json();
+    }
+
+    json settingsJson;
+    file >> settingsJson;
+    file.close();
+
+    return settingsJson;
+}
